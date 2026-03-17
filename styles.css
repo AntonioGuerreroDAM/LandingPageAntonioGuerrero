@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.barra-navegacion {
+    background-color: #1e73be; 
+    color: white;
+    padding: 15px 10px; 
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Importante para que las letras no se corten al subir */
+    overflow: visible; 
+}
+
+.contenedor-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nombre-club {
+    font-family: 'Arial Black', 'Arial', sans-serif;
+    font-style: italic; 
+    font-weight: 900;
+    font-size: 1.8rem;
+    margin-left: 10px;
+    display: flex; /* Mantiene las letras en una sola línea */
+}
+
+/* Letras individuales */
+.nombre-club span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Animación Wave */
+.nombre-club:hover span {
+    animation: saltito 0.5s ease-in-out forwards;
+    animation-delay: calc(0.06s * var(--i)); /* Un poco más rápido para efecto fluido */
+}
+
+@keyframes saltito {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Logo Magnético */
+.imagen-logo {
+    height: 40px; 
+    width: auto;
+    display: block; 
+    cursor: pointer;
+    /* Suavizado profesional: efecto elástico al soltar */
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform; /* Ayuda al navegador a suavizar la animación */
+}
+.hero {
+    background-image: url('img/banderametalica.png');
+    background-size: 100% 100%; /* Fuerza a que ocupe todo el ancho y alto */
+    background-repeat: no-repeat;
+    
+    width: 100%;
+    /* Calculamos la altura basada en el ancho (Relación de aspecto) */
+    aspect-ratio: 16 / 9; /* Ajusta este número según si tu imagen es muy alargada o más cuadrada */
+    
+    height: auto; 
+}
