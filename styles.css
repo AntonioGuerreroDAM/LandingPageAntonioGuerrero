@@ -1,17 +1,36 @@
+/* --- 1. RESET Y BASE --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    background-color: #000;
+    font-family: 'Arial Black', 'Arial', sans-serif;
+    overflow-x: hidden; /* Evita scroll horizontal por animaciones */
+    width: 100%;
+}
+
+/* --- 2. NAVBAR (Ajustado para el botón) --- */
 .barra-navegacion {
     background-color: #1e73be; 
     color: white;
-    padding: 15px 10px; 
+    height: 80px;
     width: 100%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* Importante para que las letras no se corten al subir */
-    overflow: visible; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 100; /* Siempre por encima del Hero */
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-navbar {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda, Botón a la derecha */
+    align-items: center;
 }
 
 .contenedor-logo {
@@ -20,50 +39,81 @@
     gap: 12px;
 }
 
+/* --- 3. TÍTULO (Efecto Wave Plateado) --- */
 .nombre-club {
-    font-family: 'Arial Black', 'Arial', sans-serif;
     font-style: italic; 
     font-weight: 900;
     font-size: 1.8rem;
-    margin-left: 10px;
-    display: flex; /* Mantiene las letras en una sola línea */
+    display: flex;
+    color: white;
 }
 
-/* Letras individuales */
 .nombre-club span {
     display: inline-block;
     transition: transform 0.3s ease;
 }
 
-/* Animación Wave */
 .nombre-club:hover span {
     animation: saltito 0.5s ease-in-out forwards;
-    animation-delay: calc(0.06s * var(--i)); /* Un poco más rápido para efecto fluido */
+    animation-delay: calc(0.06s * var(--i));
 }
 
 @keyframes saltito {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    50% { 
+        transform: translateY(-15px); 
+        color: #e0e0e0; /* Plata */
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); 
+    }
 }
 
-/* Logo Magnético */
+/* --- 4. ESCUDO (Magnético) --- */
 .imagen-logo {
     height: 40px; 
     width: auto;
-    display: block; 
-    cursor: pointer;
-    /* Suavizado profesional: efecto elástico al soltar */
+    display: block;
     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform; /* Ayuda al navegador a suavizar la animación */
+    will-change: transform;
 }
+
+/* --- 5. PERSONALIZACIÓN HAMBURGUESA --- */
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    background-color: #fff !important; /* Rayitas blancas */
+}
+
+/* --- 6. HERO CON FOTO DE FONDO --- */
 .hero {
-    background-image: url('img/banderametalica.png');
-    background-size: 100% 100%; /* Fuerza a que ocupe todo el ancho y alto */
-    background-repeat: no-repeat;
-    
+    /* Altura: 100% de la ventana menos el navbar */
+    height: calc(100vh - 80px);
     width: 100%;
-    /* Calculamos la altura basada en el ancho (Relación de aspecto) */
-    aspect-ratio: 16 / 9; /* Ajusta este número según si tu imagen es muy alargada o más cuadrada */
-    
-    height: auto; 
+    position: relative;
+    z-index: 1; 
+    overflow: hidden; 
+
+    /* Configuración de la imagen de fondo */
+    background-image: url('img/banderametalica.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Capa de Brillo Metalizado Dinámico */
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2;
+    background: linear-gradient(
+        110deg,
+        transparent 30%,
+        rgba(255,255,255,0.08) 50%,
+        transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: brilloOndulante 4s infinite linear;
+}
+
+@keyframes brilloOndulante {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }

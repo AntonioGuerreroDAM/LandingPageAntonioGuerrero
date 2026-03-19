@@ -3,22 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeportivoCachucha/LandingPage</title>
+    <title>Deportivo Cachucha | Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<main>
-     <section class="hero">
-        <div class="hero-content">
-            </div>
-    </section>
-</main>
 <body>
+
     <header class="barra-navegacion">
-        <div class="contenedor-logo">
-            <h1 class="nombre-club" id="titulo-animado">DEPORTIVO CACHUCHA</h1>
-            <img src="img/cachucha.png" alt="Bandera Deportivo Cachucha" class="imagen-logo" id="logo-magnetico">
+        <div class="contenedor-navbar">
+            <div class="contenedor-logo">
+                <h1 class="nombre-club" id="titulo-animado">DEPORTIVO CACHUCHA</h1>
+                <img src="img/cachucha.png" alt="Logo" class="imagen-logo" id="logo-magnetico">
+            </div>
+
+            <button class="hamburger hamburger--emphatic" type="button" id="boton-menu">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
         </div>
     </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+        </section>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
