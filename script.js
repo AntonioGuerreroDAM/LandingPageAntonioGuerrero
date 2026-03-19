@@ -1,20 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. ACTIVACIÓN DEL BOTÓN HAMBURGUESA EMPHATIC ---
+    // --- 1. ACTIVACIÓN DEL BOTÓN Y MENÚ LATERAL ---
     const menuBtn = document.getElementById('boton-menu');
-    if (menuBtn) {
+    const menuDesplegable = document.getElementById('menu-desplegable');
+    
+    if (menuBtn && menuDesplegable) {
         menuBtn.addEventListener('click', () => {
-            // Alterna la clase is-active para activar la animación de jonsuh.com
+            // Anima el botón hamburguesa
             menuBtn.classList.toggle('is-active');
+            // Abre o cierra el menú lateral
+            menuDesplegable.classList.toggle('abierto');
         });
     }
 
-    // --- 2. EFECTO DE LETRAS SALTARINAS (Título) ---
+    // --- 2. EFECTO DE LETRAS SALTARINAS (Se mantiene igual) ---
     const titulo = document.getElementById('titulo-animado');
     if (titulo) {
         const texto = titulo.textContent; 
         titulo.textContent = ""; 
-
         [...texto].forEach((letra, i) => {
             const span = document.createElement("span");
             span.textContent = letra === " " ? "\u00A0" : letra;
@@ -23,15 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. EFECTO MAGNÉTICO (Escudo) ---
+    // --- 3. EFECTO MAGNÉTICO (Se mantiene igual) ---
     const logo = document.querySelector('#logo-magnetico');
     if (logo) {
         logo.addEventListener('mousemove', (e) => {
             const { left, top, width, height } = logo.getBoundingClientRect();
-            
             const x = (e.clientX - (left + width / 2)) * 0.4;
             const y = (e.clientY - (top + height / 2)) * 0.4;
-            
             logo.style.transform = `translate(${x}px, ${y}px) scale(1.15)`;
         });
 

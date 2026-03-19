@@ -5,31 +5,34 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    background-color: #f2e8cf; /* Color Crema Intenso */
+}
+
 body {
-    background-color: #000;
     font-family: 'Arial Black', 'Arial', sans-serif;
-    overflow-x: hidden; /* Evita scroll horizontal por animaciones */
+    overflow-x: hidden;
     width: 100%;
 }
 
-/* --- 2. NAVBAR (Ajustado para el botón) --- */
+/* --- 2. NAVBAR --- */
 .barra-navegacion {
     background-color: #1e73be; 
-    color: white;
     height: 80px;
     width: 100%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
-    z-index: 100; /* Siempre por encima del Hero */
+    z-index: 100; 
     display: flex;
     align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .contenedor-navbar {
     width: 100%;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between; /* Logo a la izquierda, Botón a la derecha */
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -39,13 +42,12 @@ body {
     gap: 12px;
 }
 
-/* --- 3. TÍTULO (Efecto Wave Plateado) --- */
 .nombre-club {
     font-style: italic; 
     font-weight: 900;
     font-size: 1.8rem;
-    display: flex;
     color: white;
+    display: flex;
 }
 
 .nombre-club span {
@@ -59,56 +61,79 @@ body {
 }
 
 @keyframes saltito {
-    0%, 100% { transform: translateY(0); }
     50% { 
         transform: translateY(-15px); 
-        color: #e0e0e0; /* Plata */
+        color: #e0e0e0; 
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); 
     }
 }
 
-/* --- 4. ESCUDO (Magnético) --- */
-.imagen-logo {
-    height: 40px; 
-    width: auto;
-    display: block;
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
-}
+.imagen-logo { height: 40px; transition: transform 0.3s; }
 
-/* --- 5. PERSONALIZACIÓN HAMBURGUESA --- */
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    background-color: #fff !important; /* Rayitas blancas */
+    background-color: #fff !important;
 }
 
-/* --- 6. HERO CON FOTO DE FONDO --- */
+/* --- 3. MENÚ LATERAL --- */
+.menu-lateral {
+    position: fixed;
+    top: 80px;
+    right: -33.33%; 
+    width: 33.33%;
+    height: calc(100vh - 80px);
+    background-color: #0d2b45; /* Azul profundo para resaltar sobre el crema */
+    z-index: 90;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.menu-lateral.abierto { right: 0; }
+
+.enlaces-menu {
+    list-style: none;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.enlaces-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+/* --- 4. HERO CON FADE MINIMALISTA --- */
 .hero {
-    /* Altura: 100% de la ventana menos el navbar */
     height: calc(100vh - 80px);
     width: 100%;
     position: relative;
-    z-index: 1; 
-    overflow: hidden; 
-
-    /* Configuración de la imagen de fondo */
+    z-index: 1;
+    overflow: hidden;
     background-image: url('img/banderametalica.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 
+/* Fade ajustado: solo el 8% inferior de la imagen se funde con el crema */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8%; 
+    background: linear-gradient(to bottom, rgba(242, 232, 207, 0), #f2e8cf);
+    z-index: 3;
+}
 
-/* Capa de Brillo Metalizado Dinámico */
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: 2;
-    background: linear-gradient(
-        110deg,
-        transparent 30%,
-        rgba(255,255,255,0.08) 50%,
-        transparent 70%
-    );
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.08) 50%, transparent 70%);
     background-size: 200% 100%;
     animation: brilloOndulante 4s infinite linear;
 }
@@ -116,4 +141,25 @@ body {
 @keyframes brilloOndulante {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+}
+
+/* --- 5. SECCIÓN CREMA --- */
+.seccion-blanca {
+    background-color: #f2e8cf; /* Tono Crema Intenso */
+    color: #1e73be; 
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+
+.contenido-demo {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.espaciador { height: 800px; }
+
+/* Media Query */
+@media (max-width: 768px) {
+    .menu-lateral { width: 80%; right: -80%; }
 }
