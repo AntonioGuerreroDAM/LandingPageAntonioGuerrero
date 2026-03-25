@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <header class="barra-navegacion" id="Inicio">
+    <header class="barra-navegacion">
         <div class="contenedor-navbar">
             <div class="contenedor-logo">
                 <h1 class="nombre-club" id="titulo-animado">DEPORTIVO CACHUCHA</h1>
@@ -27,40 +27,139 @@
     <nav class="menu-lateral" id="menu-desplegable">
         <ul class="enlaces-menu">
             <li><a href="#Inicio">Inicio</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#cronicas">Cronicas</a></li>
+            <li><a href="#clasificacion">Clasificacion</a></li>
             <li><a href="#plantilla">Plantilla</a></li>
-            <li><a href="#clasificacion">Clasificación</a></li>
-            <li><a href="#resultados">Resultados</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
     <main>
-        <section class="hero">
+        <section class="hero" id="Inicio">
             <div class="hero-overlay"></div>
         </section>
 
-        <section class="seccion-blanca" id="plantilla">
-            <div class="contenido-demo">
-                <h2>HISTORIA</h2>
-                <p>texto de ejemplo</p>
-                <div class="espaciador"></div>
+        <!-- NUEVA SECCIÓN: HISTORIA -->
+<section class="seccion-historia" id="historia">
+    <div class="historia-header">
+        <h2 class="historia-titulo">HISTORIA</h2>
+    </div>
+    
+    <!-- Fila 1: Historia del equipo - Foto izquierda, Texto derecha -->
+    <div class="historia-fila">
+        <div class="historia-card historia-card-imagen">
+            <img src="img/historia/fundacion.JPG" alt="Fundación del equipo" class="historia-img">
+        </div>
+        <div class="historia-card historia-card-texto">
+            <h3 class="historia-card-titulo">Nuestros Orígenes</h3>
+            <p class="historia-card-descripcion">
+                El Deportivo Cachucha nació de la pasión de un grupo de amigos por el fútbol sala. 
+                Lo que comenzó como partidos informales entre colegas, se convirtió en un proyecto 
+                deportivo que hoy compite en la Liga Local. Desde el primer día, nuestro objetivo 
+                ha sido disfrutar del deporte, crear comunidad y representar con orgullo nuestros colores.
+            </p>
+        </div>
+    </div>
+
+    <!-- Fila 2: Patrocinadores - Texto izquierda, Foto derecha -->
+    <div class="historia-fila historia-fila-invertida">
+        <div class="historia-card historia-card-imagen">
+            <img src="img/historia/patrocinador1.jpeg" alt="Patrocinador principal" class="historia-img">
+        </div>
+        <div class="historia-card historia-card-texto">
+            <h3 class="historia-card-titulo">Primer Patrocinador - Ancha 13</h3>
+            <p class="historia-card-descripcion">
+                Nuestro primer patrocinador fue Ancha 13, una inmobiliaria local que creyó en nuestro proyecto desde el principio. Gracias a su apoyo, pudimos aportar una gran parte de los pagos necesarios para competir al máximo nivel en la liga del pueblo. 
+                Su compromiso con el deporte local ha sido fundamental para nuestro crecimiento y éxito. 
+                Siempre estaremos eternamente agradecidos por su confianza y apoyo incondicional.
+            </p>
+        </div>
+    </div>
+
+    <!-- Fila 3: Más patrocinadores - Foto izquierda, Texto derecha -->
+    <div class="historia-fila">
+        <div class="historia-card historia-card-imagen">
+            <img src="img/historia/patrocinador2.jpeg" alt="Colaboradores" class="historia-img">
+        </div>
+        <div class="historia-card historia-card-texto">
+            <h3 class="historia-card-titulo">Segundo patrocinador - Local Social Las Canteras</h3>
+            <p class="historia-card-descripcion">
+                Local Social Las Canteras se unió a nuestro proyecto como segundo patrocinador, aportando su apoyo para cubrir los gastos de las equipaciones del equipo. 
+                Su colaboración ha sido esencial para que nuestros jugadores puedan competir con orgullo y comodidad, luciendo los colores del Deportivo Cachucha en cada partido.
+                 Agradecemos profundamente su compromiso con el deporte local y su contribución a nuestro crecimiento como club.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- FIN SECCIÓN HISTORIA -->
+
+        <!-- NUEVA SECCIÓN: CRÓNICAS -->
+        <section class="seccion-cronicas" id="cronicas">
+            <!-- Barra azul con el título -->
+            <div class="cronicas-header">
+                <h2 class="cronicas-titulo">CRÓNICAS</h2>
+            </div>
+            
+            <!-- Contenedor de las tres cartas -->
+            <div class="cronicas-contenedor">
+                
+                <!-- Carta 1 -->
+                <article class="cronica-card">
+                    <div class="cronica-imagen-wrapper">
+                        <img src="img/cronicas/partido1.jpeg" alt="Partido 1" class="cronica-imagen">
+                    </div>
+                    <div class="cronica-info">
+                        <div class="cronica-resultado">Const. Rey Panorama FS 2-1 Deportivo Cachucha</div>
+                        <div class="cronica-goleadores">Goles: Salva 43'</div>
+                    </div>
+                </article>
+
+                <!-- Carta 2 -->
+                <article class="cronica-card">
+                    <div class="cronica-imagen-wrapper">
+                        <img src="img/cronicas/partido2.jpeg" alt="Partido 2" class="cronica-imagen">
+                    </div>
+                    <div class="cronica-info">
+                        <div class="cronica-resultado">Deportivo Cachucha 3-3 Yunquera 2010</div>
+                        <div class="cronica-goleadores">Goles: Salva 3', Salva 26', Zurita 36'</div>
+                    </div>
+                </article>
+
+                 <!-- Carta 3 -->
+
+                <article class="cronica-card">
+                    <div class="cronica-imagen-wrapper">
+                        <img src="img/cronicas/partido3.jpeg" alt="Partido 3" class="cronica-imagen">
+                    </div>
+                    <div class="cronica-info">
+                        <div class="cronica-resultado">CD Luis Beardo 4-0 Deportivo Cachucha</div>
+                    </div>
+                </article>
+
             </div>
         </section>
+        <!-- FIN SECCIÓN CRÓNICAS -->
 
-        <!-- SECCIÓN CLASIFICACIÓN CON SLIDER ARRASTRABLE -->
+        <!-- SECCIÓN CLASIFICACIÓN -->
         <section class="seccion-clasificacion" id="clasificacion">
             <div class="clasificacion-header">
                 <h2 class="clasificacion-titulo">CLASIFICACIÓN</h2>
-                <span class="clasificacion-subtitulo">Liga Local de Fútbol Sala - Puerto Real 25/26</span>
+                <span class="clasificacion-subtitulo">LIGA LOCAL 2024/25</span>
             </div>
             
             <div class="slider-container" id="slider-clasificacion">
                 <div class="slider-track" id="slider-track">
-                    <!-- Los equipos se generarán con JavaScript -->
                 </div>
             </div>
-            
-            <!-- ELIMINADO: Indicador "Arrastra para ver más equipos" -->
+        </section>
+
+        <section class="seccion-blanca" id="plantilla">
+            <div class="contenido-demo">
+                <h2>PLANTILLA</h2>
+                <p>texto de ejemplo</p>
+                <div class="espaciador"></div>
+            </div>
         </section>
 
     </main>

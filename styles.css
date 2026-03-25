@@ -14,6 +14,7 @@ body {
     font-family: 'Arial Black', 'Arial', sans-serif;
     overflow-x: hidden;
     width: 100%;
+    padding-top: 80px;
 }
 
 /* --- 2. NAVBAR --- */
@@ -21,7 +22,9 @@ body {
     background-color: #1e73be; 
     height: 80px;
     width: 100%;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 100; 
     display: flex;
     align-items: center;
@@ -119,7 +122,7 @@ body {
 
 /* --- 4. HERO CON FADE MINIMALISTA --- */
 .hero {
-    height: calc(100vh - 80px);
+    height: 100vh;
     width: 100%;
     position: relative;
     z-index: 1;
@@ -127,6 +130,8 @@ body {
     background-image: url('img/banderametalica.png');
     background-size: cover;
     background-position: center;
+    margin-top: -80px;
+    padding-top: 80px;
 }
 
 .hero::after {
@@ -154,21 +159,239 @@ body {
     100% { background-position: 200% 0; }
 }
 
-/* --- 5. SECCIÓN CREMA --- */
-.seccion-blanca {
+/* --- 5. SECCIÓN HISTORIA --- */
+.seccion-historia {
     background-color: #f2e8cf;
-    color: #1e73be; 
-    padding: 100px 20px;
-    min-height: 100vh;
+    padding: 60px 20px;
 }
 
-.contenido-demo {
-    max-width: 800px;
-    margin: 0 auto;
+.historia-header {
+    padding: 0 40px;
+    margin-bottom: 50px;
+}
+
+.historia-titulo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #1e73be;
+    letter-spacing: 2px;
     text-align: center;
 }
 
-.espaciador { height: 800px; }
+/* Contenedor de cada fila */
+.historia-fila {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto 40px auto;
+}
+
+.historia-fila:last-child {
+    margin-bottom: 0;
+}
+
+/* Fila invertida: texto a la izquierda, foto a la derecha en desktop */
+.historia-fila-invertida {
+    flex-direction: row-reverse;
+}
+
+/* Cartas base - ambas con fondo azul */
+.historia-card {
+    min-height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: #1e73be;
+}
+
+/* Carta con imagen - 1/3 del ancho, padding reducido */
+.historia-card-imagen {
+    width: 33.33%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historia-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 280px;
+    border-radius: 6px;
+}
+
+/* Carta con texto - 2/3 del ancho */
+.historia-card-texto {
+    width: 66.66%;
+    background-color: #1e73be;
+    color: white;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.historia-card-titulo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.historia-card-descripcion {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+/* --- RESPONSIVE HISTORIA --- */
+@media (max-width: 768px) {
+    .historia-titulo {
+        font-size: 1.8rem;
+    }
+
+    .historia-header {
+        padding: 0 20px;
+    }
+
+    .historia-fila,
+    .historia-fila-invertida {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .historia-card {
+        width: 100%;
+        min-height: auto;
+        border-radius: 12px;
+    }
+
+    .historia-card-imagen {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .historia-card-texto {
+        width: 100%;
+        padding: 30px 25px;
+    }
+
+    .historia-img {
+        min-height: 200px;
+    }
+
+    .historia-card-titulo {
+        font-size: 1.3rem;
+    }
+
+    .historia-card-descripcion {
+        font-size: 0.95rem;
+    }
+
+    /* En móvil, la foto siempre va primero */
+    .historia-fila-invertida .historia-card-imagen {
+        order: -1;
+    }
+}
+
+/* --- 5. SECCIÓN CRÓNICAS --- */
+.seccion-cronicas {
+    background-color: #f2e8cf;
+    padding: 60px 20px;
+}
+
+/* Barra azul con el título */
+.cronicas-header {
+    padding: 0 40px;
+    margin-bottom: 40px;
+}
+
+.cronicas-titulo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #1e73be;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* Contenedor de las cartas */
+.cronicas-contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+/* Carta individual */
+.cronica-card {
+    width: 420px;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de la imagen */
+.cronica-imagen-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.4s ease;
+}
+
+.cronica-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Barra de información (oculta por defecto) */
+.cronica-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1e73be;
+    padding: 15px 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.cronica-resultado {
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.cronica-goleadores {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Efecto hover: imagen sube, barra aparece desde abajo */
+.cronica-card:hover .cronica-imagen-wrapper {
+    transform: translateY(-80px);
+}
+
+.cronica-card:hover .cronica-info {
+    transform: translateY(0);
+}
 
 /* --- 6. SECCIÓN CLASIFICACIÓN CON SLIDER ARRASTRABLE --- */
 .seccion-clasificacion {
@@ -246,23 +469,20 @@ body {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* Tarjeta destacada para el Deportivo Cachucha - color crema */
-.equipo-destacado {
-    background: #f2e8cf; /* Mismo color crema que el fondo de la landing */
-    border: 2px solid rgba(30, 115, 190, 0.3); /* Borde azul sutil */
+.slider-container.dragging .equipo-card:hover {
+    transform: none;
 }
 
-/* NUEVO: Número de posición en azul para la tarjeta destacada */
-.equipo-destacado .equipo-posicion {
-    background-color: #1e73be;
-    color: white;
+/* Tarjeta destacada para el Deportivo Cachucha */
+.equipo-destacado {
+    background: #f2e8cf;
+    border: 2px solid rgba(30, 115, 190, 0.3);
 }
 
 .equipo-destacado:hover {
-    background: #e8dfc5; /* Crema un poco más oscuro en hover */
+    background: #e8dfc5;
 }
 
-/* Cambiar color del texto a azul para que sea legible sobre fondo crema */
 .equipo-destacado .equipo-nombre {
     color: #1e73be;
 }
@@ -275,8 +495,9 @@ body {
     color: rgba(30, 115, 190, 0.7);
 }
 
-.slider-container.dragging .equipo-card:hover {
-    transform: none;
+.equipo-destacado .equipo-posicion {
+    background-color: #1e73be;
+    color: white;
 }
 
 .equipo-posicion {
@@ -291,7 +512,6 @@ body {
     color: white;
 }
 
-/* Colores para podio (oro, plata, bronce) */
 .posicion-oro {
     background: linear-gradient(135deg, #FFD700, #B8860B);
     box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
@@ -311,7 +531,6 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Contenedor circular para el escudo */
 .equipo-logo {
     width: 56px;
     height: 56px;
@@ -321,16 +540,15 @@ body {
     align-items: center;
     justify-content: center;
     padding: 4px;
-    overflow: hidden; /* Asegura que la imagen no se salga del círculo */
+    overflow: hidden;
 }
 
-/* Imagen del escudo dentro del círculo */
 .equipo-escudo-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Mantiene las proporciones de la imagen */
-    border-radius: 50%; /* Hace la imagen circular si es cuadrada */
-    pointer-events: none; /* Evita que la imagen interfiera con el arrastre */
+    object-fit: contain;
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 .equipo-nombre {
@@ -359,10 +577,46 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- 7. RESPONSIVE --- */
+/* --- 7. SECCIÓN CREMA --- */
+.seccion-blanca {
+    background-color: #f2e8cf;
+    color: #1e73be; 
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+
+.contenido-demo {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.espaciador { height: 800px; }
+
+/* --- 8. RESPONSIVE --- */
 @media (max-width: 768px) {
     .menu-lateral { width: 80%; right: -80%; }
     
+    /* Crónicas responsive */
+    .cronicas-titulo {
+        font-size: 1.8rem;
+    }
+
+    .cronicas-header {
+        padding: 0 20px;
+    }
+    
+    .cronicas-contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cronica-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    /* Clasificación responsive */
     .clasificacion-titulo {
         font-size: 1.8rem;
     }
