@@ -6,27 +6,40 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (menuBtn && menuDesplegable) {
         menuBtn.addEventListener('click', () => {
-            // Anima el botón hamburguesa
             menuBtn.classList.toggle('is-active');
-            // Abre o cierra el menú lateral
             menuDesplegable.classList.toggle('abierto');
         });
     }
 
-    // --- 2. EFECTO DE LETRAS SALTARINAS (Se mantiene igual) ---
+    // --- 2. EFECTO LETRAS SALTANDO (TÍTULO) ---
     const titulo = document.getElementById('titulo-animado');
     if (titulo) {
-        const texto = titulo.textContent; 
-        titulo.textContent = ""; 
+        prepararLetras(titulo);
+    }
+
+    // --- 3. EFECTO LETRAS SALTANDO EN EL MENÚ ---
+    const enlacesMenu = document.querySelectorAll('.enlaces-menu a');
+    enlacesMenu.forEach(enlace => {
+        prepararLetras(enlace);
+        
+        enlace.addEventListener('click', () => {
+            menuBtn.classList.remove('is-active');
+            menuDesplegable.classList.remove('abierto');
+        });
+    });
+
+    function prepararLetras(elemento) {
+        const texto = elemento.textContent;
+        elemento.textContent = "";
         [...texto].forEach((letra, i) => {
             const span = document.createElement("span");
             span.textContent = letra === " " ? "\u00A0" : letra;
             span.style.setProperty('--i', i);
-            titulo.appendChild(span);
+            elemento.appendChild(span);
         });
     }
 
-    // --- 3. EFECTO MAGNÉTICO (Se mantiene igual) ---
+    // --- 4. EFECTO MAGNÉTICO (ESCUDO) ---
     const logo = document.querySelector('#logo-magnetico');
     if (logo) {
         logo.addEventListener('mousemove', (e) => {
@@ -40,4 +53,188 @@ document.addEventListener('DOMContentLoaded', () => {
             logo.style.transform = `translate(0px, 0px) scale(1)`;
         });
     }
+
+    // --- 5. SLIDER DE CLASIFICACIÓN ARRASTRABLE ---
+    initClasificacionSlider();
 });
+
+function initClasificacionSlider() {
+    const sliderContainer = document.getElementById('slider-clasificacion');
+    const sliderTrack = document.getElementById('slider-track');
+    
+    if (!sliderContainer || !sliderTrack) return;
+
+    const equipos = [
+        { nombre: "Kortatus FS", escudo: "img/escudo/kortatus.png", puntos: 33 },
+        { nombre: "Iglesias Proyectos y Reformas", escudo: "img/escudo/iglesias.png", puntos: 30 },
+        { nombre: "El Rosal FS", escudo: "img/escudo/rosal.png", puntos: 22 },
+        { nombre: "Peña Cádiz CF Puerto Real", escudo: "img/escudo/peña.png", puntos: 21 },
+        { nombre: "Agus Team FS", escudo: "img/escudo/agus.png", puntos: 18 },
+        { nombre: "CD Luis Beardo", escudo: "img/escudo/luisbeardo.png", puntos: 18 },
+        { nombre: "La Taberna FS", escudo: "img/escudo/taberna.png", puntos: 15 },
+        { nombre: "Const. Rey Panorama FS", escudo: "img/escudo/panorama.png", puntos: 15 },
+        { nombre: "Yunquera 2010", escudo: "img/escudo/yunquera.png", puntos: 14 },
+        { nombre: "West Jam York FS", escudo: "img/escudo/westjam.png", puntos: 13 },
+        { nombre: "Barberia Haro FS", escudo: "img/escudo/haro.png", puntos: 12 },
+        { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png", puntos: 11 },
+        { nombre: "Ciudad Jardín FS", escudo: "img/escudo/ciudadjardin.png", puntos: 9 },
+        { nombre: "Recre FS", escudo: "img/escudo/recre.png", puntos: 0 },
+    ];
+
+    // NUEVO: Variable para guardar el índice del equipo destacado
+    let indiceEquipoDestacado = -1;
+
+    equipos.forEach((equipo, index) => {
+        const posicion = index + 1;
+        const card = document.createElement('div');
+        
+        const esDeportivoCachucha = equipo.nombre === "Deportivo Cachucha";
+        card.className = esDeportivoCachucha ? 'equipo-card equipo-destacado' : 'equipo-card';
+        
+        // NUEVO: Guardar el índice del equipo destacado
+        if (esDeportivoCachucha) {
+            indiceEquipoDestacado = index;
+        }
+        
+        let posicionClass = 'posicion-normal';
+        if (posicion === 1) posicionClass = 'posicion-oro';
+        else if (posicion === 2) posicionClass = 'posicion-plata';
+        else if (posicion === 3) posicionClass = 'posicion-bronce';
+
+        card.innerHTML = `
+            <div class="equipo-posicion ${posicionClass}">${posicion}</div>
+            <div class="equipo-logo">
+                <img src="${equipo.escudo}" alt="Escudo ${equipo.nombre}" class="equipo-escudo-img">
+            </div>
+            <div class="equipo-nombre">${equipo.nombre}</div>
+            <div class="equipo-puntos">${equipo.puntos}</div>
+            <div class="equipo-puntos-label">PTS</div>
+        `;
+        
+        sliderTrack.appendChild(card);
+    });
+
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
+
+    function getSliderBounds() {
+        const trackWidth = sliderTrack.scrollWidth;
+        const containerWidth = sliderContainer.offsetWidth;
+        const maxTranslate = 0;
+        const minTranslate = -(trackWidth - containerWidth);
+        return { minTranslate, maxTranslate };
+    }
+
+    // NUEVO: Función para centrar el slider en el equipo destacado
+    function centrarEnEquipoDestacado() {
+        if (indiceEquipoDestacado === -1) return;
+        
+        // Obtener todas las tarjetas
+        const tarjetas = sliderTrack.querySelectorAll('.equipo-card');
+        if (tarjetas.length === 0) return;
+        
+        // Obtener la tarjeta destacada
+        const tarjetaDestacada = tarjetas[indiceEquipoDestacado];
+        if (!tarjetaDestacada) return;
+        
+        // Calcular la posición para centrar la tarjeta en el contenedor
+        const containerWidth = sliderContainer.offsetWidth;
+        const tarjetaWidth = tarjetaDestacada.offsetWidth;
+        const tarjetaLeft = tarjetaDestacada.offsetLeft;
+        
+        // Posición para centrar: mover el track para que la tarjeta quede en el centro
+        let posicionCentrada = -(tarjetaLeft - (containerWidth / 2) + (tarjetaWidth / 2));
+        
+        // Asegurarse de no pasar los límites
+        const { minTranslate, maxTranslate } = getSliderBounds();
+        if (posicionCentrada > maxTranslate) {
+            posicionCentrada = maxTranslate;
+        } else if (posicionCentrada < minTranslate) {
+            posicionCentrada = minTranslate;
+        }
+        
+        // Aplicar la posición
+        currentTranslate = posicionCentrada;
+        prevTranslate = posicionCentrada;
+        sliderTrack.style.transform = `translateX(${posicionCentrada}px)`;
+    }
+
+    // NUEVO: Centrar en el equipo destacado al cargar la página
+    // Usamos setTimeout para asegurar que el DOM esté completamente renderizado
+    setTimeout(centrarEnEquipoDestacado, 100);
+
+    sliderContainer.addEventListener('mousedown', dragStart);
+    sliderContainer.addEventListener('mousemove', drag);
+    sliderContainer.addEventListener('mouseup', dragEnd);
+    sliderContainer.addEventListener('mouseleave', dragEnd);
+
+    sliderContainer.addEventListener('touchstart', dragStart, { passive: true });
+    sliderContainer.addEventListener('touchmove', drag, { passive: false });
+    sliderContainer.addEventListener('touchend', dragEnd);
+
+    function dragStart(e) {
+        isDragging = true;
+        startX = getPositionX(e);
+        sliderContainer.classList.add('dragging');
+        animationID = requestAnimationFrame(animation);
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        
+        const currentX = getPositionX(e);
+        const diff = currentX - startX;
+        currentTranslate = prevTranslate + diff;
+
+        const { minTranslate, maxTranslate } = getSliderBounds();
+        
+        if (currentTranslate > maxTranslate) {
+            currentTranslate = maxTranslate + (currentTranslate - maxTranslate) * 0.2;
+        } else if (currentTranslate < minTranslate) {
+            currentTranslate = minTranslate + (currentTranslate - minTranslate) * 0.2;
+        }
+
+        if (e.type === 'touchmove') {
+            e.preventDefault();
+        }
+    }
+
+    function dragEnd() {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        sliderContainer.classList.remove('dragging');
+
+        const { minTranslate, maxTranslate } = getSliderBounds();
+        
+        if (currentTranslate > maxTranslate) {
+            currentTranslate = maxTranslate;
+        } else if (currentTranslate < minTranslate) {
+            currentTranslate = minTranslate;
+        }
+
+        prevTranslate = currentTranslate;
+        setSliderPosition();
+    }
+
+    function getPositionX(e) {
+        return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    }
+
+    function animation() {
+        setSliderPosition();
+        if (isDragging) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    function setSliderPosition() {
+        sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
+}

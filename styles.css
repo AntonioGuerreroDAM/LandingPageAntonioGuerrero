@@ -7,7 +7,7 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: #f2e8cf; /* Color Crema Intenso */
+    background-color: #f2e8cf;
 }
 
 body {
@@ -81,7 +81,7 @@ body {
     right: -33.33%; 
     width: 33.33%;
     height: calc(100vh - 80px);
-    background-color: #0d2b45; /* Azul profundo para resaltar sobre el crema */
+    background-color: #073a67;
     z-index: 90;
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
@@ -95,14 +95,26 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: fit-content;
 }
 
 .enlaces-menu li a {
+    display: flex;
     color: white;
     text-decoration: none;
     font-size: 1.4rem;
     text-transform: uppercase;
     transition: color 0.3s;
+}
+
+.enlaces-menu li a span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.enlaces-menu li a:hover span {
+    animation: saltito 0.5s ease-in-out forwards;
+    animation-delay: calc(0.06s * var(--i));
 }
 
 /* --- 4. HERO CON FADE MINIMALISTA --- */
@@ -117,7 +129,6 @@ body {
     background-position: center;
 }
 
-/* Fade ajustado: solo el 8% inferior de la imagen se funde con el crema */
 .hero::after {
     content: "";
     position: absolute;
@@ -145,7 +156,7 @@ body {
 
 /* --- 5. SECCIÓN CREMA --- */
 .seccion-blanca {
-    background-color: #f2e8cf; /* Tono Crema Intenso */
+    background-color: #f2e8cf;
     color: #1e73be; 
     padding: 100px 20px;
     min-height: 100vh;
@@ -159,7 +170,215 @@ body {
 
 .espaciador { height: 800px; }
 
-/* Media Query */
+/* --- 6. SECCIÓN CLASIFICACIÓN CON SLIDER ARRASTRABLE --- */
+.seccion-clasificacion {
+    background-color: #1e73be;
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+.clasificacion-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.clasificacion-titulo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+
+.clasificacion-subtitulo {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 20px 0;
+}
+
+.slider-container:active {
+    cursor: grabbing;
+}
+
+.slider-container.dragging {
+    cursor: grabbing;
+}
+
+.slider-track {
+    display: flex;
+    gap: 16px;
+    padding: 0 40px;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+.slider-container.dragging .slider-track {
+    transition: none;
+}
+
+.equipo-card {
+    flex-shrink: 0;
+    width: 140px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.equipo-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Tarjeta destacada para el Deportivo Cachucha - color crema */
+.equipo-destacado {
+    background: #f2e8cf; /* Mismo color crema que el fondo de la landing */
+    border: 2px solid rgba(30, 115, 190, 0.3); /* Borde azul sutil */
+}
+
+/* NUEVO: Número de posición en azul para la tarjeta destacada */
+.equipo-destacado .equipo-posicion {
+    background-color: #1e73be;
+    color: white;
+}
+
+.equipo-destacado:hover {
+    background: #e8dfc5; /* Crema un poco más oscuro en hover */
+}
+
+/* Cambiar color del texto a azul para que sea legible sobre fondo crema */
+.equipo-destacado .equipo-nombre {
+    color: #1e73be;
+}
+
+.equipo-destacado .equipo-puntos {
+    color: #1e73be;
+}
+
+.equipo-destacado .equipo-puntos-label {
+    color: rgba(30, 115, 190, 0.7);
+}
+
+.slider-container.dragging .equipo-card:hover {
+    transform: none;
+}
+
+.equipo-posicion {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* Colores para podio (oro, plata, bronce) */
+.posicion-oro {
+    background: linear-gradient(135deg, #FFD700, #B8860B);
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.posicion-plata {
+    background: linear-gradient(135deg, #C0C0C0, #808080);
+    box-shadow: 0 2px 8px rgba(192, 192, 192, 0.4);
+}
+
+.posicion-bronce {
+    background: linear-gradient(135deg, #CD7F32, #8B4513);
+    box-shadow: 0 2px 8px rgba(205, 127, 50, 0.4);
+}
+
+.posicion-normal {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Contenedor circular para el escudo */
+.equipo-logo {
+    width: 56px;
+    height: 56px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    overflow: hidden; /* Asegura que la imagen no se salga del círculo */
+}
+
+/* Imagen del escudo dentro del círculo */
+.equipo-escudo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantiene las proporciones de la imagen */
+    border-radius: 50%; /* Hace la imagen circular si es cuadrada */
+    pointer-events: none; /* Evita que la imagen interfiera con el arrastre */
+}
+
+.equipo-nombre {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.equipo-puntos {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+}
+
+.equipo-puntos-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- 7. RESPONSIVE --- */
 @media (max-width: 768px) {
     .menu-lateral { width: 80%; right: -80%; }
+    
+    .clasificacion-titulo {
+        font-size: 1.8rem;
+    }
+    
+    .equipo-card {
+        width: 120px;
+        padding: 16px 12px;
+    }
+    
+    .equipo-logo {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .slider-track {
+        padding: 0 20px;
+        gap: 12px;
+    }
 }
