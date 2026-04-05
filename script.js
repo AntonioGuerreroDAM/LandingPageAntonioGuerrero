@@ -65,9 +65,9 @@ function initClasificacionSlider() {
     if (!sliderContainer || !sliderTrack) return;
 
     const equipos = [
-        { nombre: "Kortatus FS", escudo: "img/escudo/kortatus.png", puntos: 33 },
+        { nombre: "Kortatus FS", escudo: "img/escudo/kortatus.png", puntos: 36 },
         { nombre: "Iglesias Proyectos y Reformas", escudo: "img/escudo/iglesias.png", puntos: 30 },
-        { nombre: "El Rosal FS", escudo: "img/escudo/rosal.png", puntos: 22 },
+        { nombre: "El Rosal FS", escudo: "img/escudo/rosal.png", puntos: 25 },
         { nombre: "Peña Cádiz CF Puerto Real", escudo: "img/escudo/peña.png", puntos: 21 },
         { nombre: "Agus Team FS", escudo: "img/escudo/agus.png", puntos: 18 },
         { nombre: "CD Luis Beardo", escudo: "img/escudo/luisbeardo.png", puntos: 18 },
@@ -237,4 +237,244 @@ function initClasificacionSlider() {
     }
 
     sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // --- 6. SLIDER DE JORNADAS ARRASTRABLE ---
+initJornadasSlider();
+
+function initJornadasSlider() {
+    const sliderContainer = document.getElementById('slider-jornadas');
+    const sliderTrack = document.getElementById('slider-track-jornadas');
+    
+    if (!sliderContainer || !sliderTrack) return;
+
+    // Array de partidos (14 jornadas)
+    const partidos = [
+        { 
+            jornada: 1,
+            local: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            visitante: { nombre: "El Rosal FS", escudo: "img/escudo/rosal.png" },
+            fecha: "17 Oct 2025",
+            hora: "20:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 2,
+            local: { nombre: "Recre FS", escudo: "img/escudo/recre.png"  },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "7 Nov 2025",
+            hora: "21:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 3,
+            local: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            visitante: { nombre: "La Taberna FS", escudo: "img/escudo/taberna.png" },
+            fecha: "14 Nov 2025",
+            hora: "21:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 4,
+            local: { nombre: "West Jam York FS", escudo: "img/escudo/westjam.png" },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "22 Nov 2025",
+            hora: "21:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 5,
+            local: { nombre: "Kortatus FS", escudo: "img/escudo/kortatus.png" },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "12 Dic 2025",
+            hora: "20:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 6,
+            local: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            visitante: { nombre: "Peña Cadiz CF Puerto Real", escudo: "img/escudo/peña.png" },
+            fecha: "14 Ene 2026",
+            hora: "21:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 7,
+            local: { nombre: "CD Luis Beardo", escudo: "img/escudo/luisbeardo.png" },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "23 Ene 2026",
+            hora: "20:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 8,
+            local: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            visitante: { nombre: "Agus Team FS", escudo: "img/escudo/agus.png" },
+            fecha: "14 Feb 2026",
+            hora: "20:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 9,
+            local: { nombre: "Ciudad Jardín FS", escudo: "img/escudo/ciudadjardin.png" },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "28 Feb 2026",
+            hora: "20:00",
+            pabellon: "Sala de Barrio 512"
+        },
+        { 
+            jornada: 10,
+            local: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            visitante: { nombre: "Yunquera 2010", escudo: "img/escudo/yunquera.png" },
+            fecha: "14 Mar 2026",
+            hora: "16:00",
+            pabellon: "Sala de Barrio 512"
+        },
+        { 
+            jornada: 11,
+            local: { nombre: "Const. Rey Panorama FS", escudo: "img/escudo/panorama.png" },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "21 Mar 2026",
+            hora: "21:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 12,
+            local: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            visitante: { nombre: "Iglesias Proyectos y Reformas", escudo: "img/escudo/iglesias.png" },
+            fecha: "27 Mar 2026",
+            hora: "20:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+        { 
+            jornada: 13,
+            local: { nombre: "Barbería Haro FS", escudo: "img/escudo/haro.png" },
+            visitante: { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png" },
+            fecha: "18 Ene 2025",
+            hora: "18:00",
+            pabellon: "Sala de Barrio Rio San Pedro"
+        },
+    ];
+
+    partidos.forEach((partido) => {
+        const card = document.createElement('div');
+        
+        // Destacar si juega el Deportivo Cachucha
+        const esPartidoCachucha = partido.local.nombre === "Deportivo Cachucha" || 
+                                   partido.visitante.nombre === "Deportivo Cachucha";
+        card.className = esPartidoCachucha ? 'partido-card partido-destacado' : 'partido-card';
+
+        card.innerHTML = `
+            <div class="partido-jornada">Jornada ${partido.jornada}</div>
+            <div class="partido-equipos">
+                <div class="partido-equipo">
+                    <div class="partido-escudo">
+                        <img src="${partido.local.escudo}" alt="${partido.local.nombre}">
+                    </div>
+                    <span class="partido-nombre-equipo">${partido.local.nombre}</span>
+                </div>
+                <span class="partido-vs">VS</span>
+                <div class="partido-equipo">
+                    <div class="partido-escudo">
+                        <img src="${partido.visitante.escudo}" alt="${partido.visitante.nombre}">
+                    </div>
+                    <span class="partido-nombre-equipo">${partido.visitante.nombre}</span>
+                </div>
+            </div>
+            <div class="partido-info">
+                <span class="partido-fecha">${partido.fecha}</span>
+                <span class="partido-hora">${partido.hora}</span>
+                <span class="partido-pabellon">${partido.pabellon}</span>
+            </div>
+        `;
+        
+        sliderTrack.appendChild(card);
+    });
+
+    // Sistema de arrastre (igual que clasificacion)
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
+
+    function getSliderBounds() {
+        const trackWidth = sliderTrack.scrollWidth;
+        const containerWidth = sliderContainer.offsetWidth;
+        const maxTranslate = 0;
+        const minTranslate = -(trackWidth - containerWidth);
+        return { minTranslate, maxTranslate };
+    }
+
+    sliderContainer.addEventListener('mousedown', dragStart);
+    sliderContainer.addEventListener('mousemove', drag);
+    sliderContainer.addEventListener('mouseup', dragEnd);
+    sliderContainer.addEventListener('mouseleave', dragEnd);
+
+    sliderContainer.addEventListener('touchstart', dragStart, { passive: true });
+    sliderContainer.addEventListener('touchmove', drag, { passive: false });
+    sliderContainer.addEventListener('touchend', dragEnd);
+
+    function dragStart(e) {
+        isDragging = true;
+        startX = getPositionX(e);
+        sliderContainer.classList.add('dragging');
+        animationID = requestAnimationFrame(animation);
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        
+        const currentX = getPositionX(e);
+        const diff = currentX - startX;
+        currentTranslate = prevTranslate + diff;
+
+        const { minTranslate, maxTranslate } = getSliderBounds();
+        
+        if (currentTranslate > maxTranslate) {
+            currentTranslate = maxTranslate + (currentTranslate - maxTranslate) * 0.2;
+        } else if (currentTranslate < minTranslate) {
+            currentTranslate = minTranslate + (currentTranslate - minTranslate) * 0.2;
+        }
+
+        if (e.type === 'touchmove') {
+            e.preventDefault();
+        }
+    }
+
+    function dragEnd() {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        sliderContainer.classList.remove('dragging');
+
+        const { minTranslate, maxTranslate } = getSliderBounds();
+        
+        if (currentTranslate > maxTranslate) {
+            currentTranslate = maxTranslate;
+        } else if (currentTranslate < minTranslate) {
+            currentTranslate = minTranslate;
+        }
+
+        prevTranslate = currentTranslate;
+        setSliderPosition();
+    }
+
+    function getPositionX(e) {
+        return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    }
+
+    function animation() {
+        setSliderPosition();
+        if (isDragging) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    function setSliderPosition() {
+        sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
+}
 }
