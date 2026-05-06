@@ -65,19 +65,19 @@ function initClasificacionSlider() {
     if (!sliderContainer || !sliderTrack) return;
 
     const equipos = [
+        { nombre: "Iglesias Proyectos y Reformas", escudo: "img/escudo/iglesias.png", puntos: 36 },
         { nombre: "Kortatus FS", escudo: "img/escudo/kortatus.png", puntos: 36 },
-        { nombre: "Iglesias Proyectos y Reformas", escudo: "img/escudo/iglesias.png", puntos: 30 },
-        { nombre: "El Rosal FS", escudo: "img/escudo/rosal.png", puntos: 25 },
-        { nombre: "Peña Cádiz CF Puerto Real", escudo: "img/escudo/peña.png", puntos: 21 },
-        { nombre: "Agus Team FS", escudo: "img/escudo/agus.png", puntos: 18 },
-        { nombre: "CD Luis Beardo", escudo: "img/escudo/luisbeardo.png", puntos: 18 },
-        { nombre: "La Taberna FS", escudo: "img/escudo/taberna.png", puntos: 15 },
+        { nombre: "El Rosal FS", escudo: "img/escudo/rosal.png", puntos: 28 },
+        { nombre: "Peña Cádiz CF Puerto Real", escudo: "img/escudo/peña.png", puntos: 22 },
+        { nombre: "CD Luis BeardoAgus Team FS", escudo: "img/escudo/luisbeardo.png", puntos: 21 },
+        { nombre: "West Jam York FS", escudo: "img/escudo/westjam.png", puntos: 19 },
+        { nombre: "Barberia Haro FS", escudo: "img/escudo/haro.png", puntos: 18 },
         { nombre: "Const. Rey Panorama FS", escudo: "img/escudo/panorama.png", puntos: 15 },
+        { nombre: "Agus Team FS", escudo: "img/escudo/agus.png", puntos: 15 },
+        { nombre: "La Taberna FS", escudo: "img/escudo/taberna.png", puntos: 15 },
         { nombre: "Yunquera 2010", escudo: "img/escudo/yunquera.png", puntos: 14 },
-        { nombre: "West Jam York FS", escudo: "img/escudo/westjam.png", puntos: 13 },
-        { nombre: "Barberia Haro FS", escudo: "img/escudo/haro.png", puntos: 12 },
+        { nombre: "Ciudad Jardín FS", escudo: "img/escudo/ciudadjardin.png", puntos: 12 },
         { nombre: "Deportivo Cachucha", escudo: "img/escudo/cachucha.png", puntos: 11 },
-        { nombre: "Ciudad Jardín FS", escudo: "img/escudo/ciudadjardin.png", puntos: 9 },
         { nombre: "Recre FS", escudo: "img/escudo/recre.png", puntos: 0 },
     ];
 
@@ -477,4 +477,53 @@ function initJornadasSlider() {
 
     sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
 }
+// ==========================================
+    // TIENDA - SELECCIÓN DE TALLAS
+    // ==========================================
+    const tallaBtns = document.querySelectorAll('.talla-btn');
+    let tallaSeleccionada = null;
+
+    tallaBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Quitar clase activo de todos los botones
+            tallaBtns.forEach(b => b.classList.remove('activo'));
+            // Agregar clase activo al botón clicado
+            this.classList.add('activo');
+            // Guardar la talla seleccionada
+            tallaSeleccionada = this.dataset.talla;
+        });
+    });
+
+    // ==========================================
+    // TIENDA - BOTÓN COMPRAR
+    // ==========================================
+    const btnComprar = document.getElementById('btn-comprar');
+    const inputNombre = document.getElementById('input-nombre');
+    const inputDorsal = document.getElementById('input-dorsal');
+
+    if (btnComprar) {
+        btnComprar.addEventListener('click', function() {
+            const nombre = inputNombre ? inputNombre.value.trim() : '';
+            const dorsal = inputDorsal ? inputDorsal.value : '';
+
+            // Validaciones
+            if (!nombre) {
+                alert('Por favor, introduce un nombre para la camiseta.');
+                return;
+            }
+
+            if (!dorsal || dorsal < 1 || dorsal > 99) {
+                alert('Por favor, introduce un dorsal válido (1-99).');
+                return;
+            }
+
+            if (!tallaSeleccionada) {
+                alert('Por favor, selecciona una talla.');
+                return;
+            }
+
+            // Mostrar resumen de la compra
+            alert(`¡Gracias por tu compra!\n\nResumen:\n- Nombre: ${nombre.toUpperCase()}\n- Dorsal: ${dorsal}\n- Talla: ${tallaSeleccionada}\n- Precio: 35€\n\nTe contactaremos pronto para confirmar el pedido.`);
+        });
+    }
 }

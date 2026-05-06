@@ -754,6 +754,455 @@ body {
     font-style: italic;
 }
 
+/* --- SECCIÓN PLANTILLA --- */
+.seccion-plantilla {
+    background-color: #1e73be;
+    padding: 60px 20px;
+}
+
+.plantilla-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.plantilla-titulo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.plantilla-subtitulo {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* Contenedor de las filas de jugadores */
+.plantilla-fila {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto 25px auto;
+    flex-wrap: wrap;
+}
+
+.plantilla-fila:last-child {
+    margin-bottom: 0;
+}
+
+/* Carta de jugador */
+.jugador-card {
+    width: 260px;
+    height: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f2e8cf;
+    padding: 8px;
+}
+
+.jugador-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor de la imagen */
+.jugador-imagen-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.jugador-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.4s ease;
+}
+
+/* Overlay con efecto blur azulado */
+.jugador-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 115, 190, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Efecto hover: imagen borrosa con overlay azulado */
+.jugador-card:hover .jugador-imagen {
+    filter: blur(4px);
+}
+
+.jugador-card:hover .jugador-overlay {
+    opacity: 1;
+}
+
+/* Información del jugador */
+.jugador-info {
+    text-align: center;
+    padding: 20px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.jugador-card:hover .jugador-info {
+    transform: translateY(0);
+}
+
+.jugador-nombre {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.jugador-dato {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 8px;
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.jugador-dato span {
+    font-weight: 700;
+    color: #f2e8cf;
+}
+/* --- SECCIÓN TIENDA --- */
+.seccion-tienda {
+    background-color: #1e73be;
+    padding: 60px 20px;
+}
+
+.tienda-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.tienda-titulo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #f2e8cf;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.tienda-subtitulo {
+    font-size: 1rem;
+    color: rgba(242, 232, 207, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.tienda-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Imagen de la camiseta */
+.tienda-imagen {
+    flex: 0 0 450px;
+    background-color: #f2e8cf;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.camiseta-preview {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: contain;
+    max-height: 500px;
+}
+
+/* Formulario de personalización */
+.tienda-formulario {
+    flex: 1;
+    max-width: 450px;
+}
+
+.formulario-grupo {
+    margin-bottom: 25px;
+}
+
+.formulario-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #f2e8cf;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.formulario-input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-family: 'Source Serif 4', Georgia, serif;
+    background-color: rgba(242, 232, 207, 0.15);
+    color: #f2e8cf;
+    border: 2px solid rgba(242, 232, 207, 0.3);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formulario-input::placeholder {
+    color: rgba(242, 232, 207, 0.5);
+}
+
+.formulario-input:focus {
+    border-color: #f2e8cf;
+    box-shadow: 0 0 0 3px rgba(242, 232, 207, 0.2);
+}
+
+.formulario-ayuda {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(242, 232, 207, 0.7);
+    margin-top: 8px;
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+/* Botones de talla */
+.tallas-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.talla-btn {
+    width: 55px;
+    height: 45px;
+    background-color: transparent;
+    border: 2px solid #f2e8cf;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f2e8cf;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Oswald', sans-serif;
+}
+
+.talla-btn:hover {
+    background-color: rgba(242, 232, 207, 0.2);
+    color: #f2e8cf;
+}
+
+.talla-btn.activo {
+    background-color: #f2e8cf;
+    color: #1e73be;
+}
+
+/* Contenedor de precio */
+.precio-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(242, 232, 207, 0.15);
+    padding: 20px 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.precio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.precio-label {
+    font-size: 1rem;
+    font-weight: 900;
+    color: #f2e8cf;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+
+.precio-descripcion {
+    font-size: 0.85rem;
+    color: rgba(242, 232, 207, 0.7);
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.precio-valor {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #f2e8cf;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* Botón de comprar */
+.btn-comprar {
+    width: 100%;
+    padding: 18px 30px;
+    background-color: #f2e8cf;
+    color: #1e73be;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Oswald', sans-serif;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-comprar:hover {
+    background-color: #e6d9b8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-comprar:active {
+    transform: translateY(0);
+}
+/* --- FOOTER --- */
+.footer {
+    background-color: #f2e8cf;
+    padding: 50px 20px 30px;
+}
+
+.footer-contenedor {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Parte superior: Club */
+.footer-club {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.footer-escudo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.footer-nombre-club {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #1e73be;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* Separador */
+.footer-separador {
+    width: 100%;
+    max-width: 400px;
+    height: 2px;
+    background-color: #1e73be;
+    opacity: 0.3;
+    margin-bottom: 30px;
+}
+
+/* Contacto */
+.footer-contacto {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.footer-columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-columna-titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e73be;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 5px;
+}
+
+.footer-enlace {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e73be;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-family: 'Source Serif 4', Georgia, serif;
+    transition: opacity 0.3s ease;
+}
+
+.footer-enlace:hover {
+    opacity: 0.7;
+}
+
+.footer-icono {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Copyright */
+.footer-copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(30, 115, 190, 0.2);
+    width: 100%;
+}
+
+.footer-copyright p {
+    font-size: 0.85rem;
+    color: rgba(30, 115, 190, 0.6);
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
 /* --- OSWALD EN TÍTULOS --- */
 .nombre-club,
 .historia-titulo,
@@ -826,5 +1275,28 @@ body {
     
     #slider-jornadas .slider-track {
         padding: 0 20px;
+    }
+
+    /* Plantilla responsive */
+    .plantilla-titulo {
+        font-size: 1.8rem;
+    }
+
+    .plantilla-fila {
+        gap: 15px;
+    }
+
+    .jugador-card {
+        width: 100%;
+        max-width: 280px;
+        height: 300px;
+    }
+
+    .jugador-nombre {
+        font-size: 1.3rem;
+    }
+
+    .jugador-dato {
+        font-size: 0.9rem;
     }
 }
