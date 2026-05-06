@@ -1322,13 +1322,20 @@ body {
     }
     
     .cronica-imagen-wrapper {
-        transform: translateY(0);
-        transition: transform 0.4s ease;
-    }
-    
-    .cronica-card .cronica-imagen-wrapper {
-        height: 100%;
-    }
+    transform: translateY(0);
+    transition: transform 0.4s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cronica-card .cronica-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
     
     /* Cuando se toca la tarjeta de crónica */
     .cronica-card.touch-active .cronica-imagen-wrapper {
