@@ -43,14 +43,19 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
+    flex: 1;
 }
 
 .nombre-club {
     font-style: italic; 
     font-weight: 900;
-    font-size: 1.8rem;
+    font-size: clamp(0.9rem, 4vw, 1.8rem);
     color: white;
     display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nombre-club span {
@@ -71,7 +76,16 @@ body {
     }
 }
 
-.imagen-logo { height: 40px; transition: transform 0.3s; }
+.imagen-logo { 
+    height: 40px; 
+    width: 40px;
+    flex-shrink: 0;
+    transition: transform 0.3s; 
+}
+
+.hamburger {
+    flex-shrink: 0;
+}
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
     background-color: #fff !important;
@@ -81,31 +95,33 @@ body {
 .menu-lateral {
     position: fixed;
     top: 80px;
-    right: -33.33%; 
-    width: 33.33%;
+    right: -100%; 
+    width: 100%;
+    max-width: 400px;
     height: calc(100vh - 80px);
     background-color: #073a67;
     z-index: 90;
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
 }
 
 .menu-lateral.abierto { right: 0; }
 
 .enlaces-menu {
     list-style: none;
-    padding: 50px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    width: fit-content;
+    gap: 25px;
+    width: 100%;
 }
 
 .enlaces-menu li a {
     display: flex;
     color: white;
     text-decoration: none;
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
     transition: color 0.3s;
@@ -124,6 +140,7 @@ body {
 /* --- 4. HERO CON FADE MINIMALISTA --- */
 .hero {
     height: 100vh;
+    min-height: 500px;
     width: 100%;
     position: relative;
     z-index: 1;
@@ -179,7 +196,7 @@ body {
 }
 
 .historia-titulo {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 900;
     color: #1e73be;
     letter-spacing: 2px;
@@ -214,7 +231,7 @@ body {
     background-color: #1e73be;
 }
 
-/* Carta con imagen - 1/3 del ancho, padding reducido */
+/* Carta con imagen - 1/3 del ancho */
 .historia-card-imagen {
     width: 33.33%;
     padding: 10px;
@@ -244,7 +261,7 @@ body {
 }
 
 .historia-card-titulo {
-    font-size: 1.6rem;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
     font-weight: 900;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -253,64 +270,14 @@ body {
 }
 
 .historia-card-descripcion {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
     font-weight: 400;
     line-height: 1.7;
     font-family: 'Source Serif 4', Georgia, serif;
     color: white;
 }
 
-/* --- RESPONSIVE HISTORIA --- */
-@media (max-width: 768px) {
-    .historia-titulo {
-        font-size: 1.8rem;
-    }
-
-    .historia-header {
-        padding: 0 20px;
-    }
-
-    .historia-fila,
-    .historia-fila-invertida {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .historia-card {
-        width: 100%;
-        min-height: auto;
-        border-radius: 12px;
-    }
-
-    .historia-card-imagen {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .historia-card-texto {
-        width: 100%;
-        padding: 30px 25px;
-    }
-
-    .historia-img {
-        min-height: 200px;
-    }
-
-    .historia-card-titulo {
-        font-size: 1.3rem;
-    }
-
-    .historia-card-descripcion {
-        font-size: 0.95rem;
-    }
-
-    /* En móvil, la foto siempre va primero */
-    .historia-fila-invertida .historia-card-imagen {
-        order: -1;
-    }
-}
-
-/* --- 5. SECCIÓN CRÓNICAS --- */
+/* --- 6. SECCIÓN CRÓNICAS --- */
 .seccion-cronicas {
     background-color: #f2e8cf;
     padding: 60px 20px;
@@ -323,7 +290,7 @@ body {
 }
 
 .cronicas-titulo {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 900;
     color: #1e73be;
     letter-spacing: 2px;
@@ -342,7 +309,8 @@ body {
 
 /* Carta individual */
 .cronica-card {
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
     height: 250px;
     border-radius: 12px;
     overflow: hidden;
@@ -366,7 +334,7 @@ body {
     display: block;
 }
 
-/* Barra de información (oculta por defecto) */
+/* Barra de información (oculta por defecto en desktop) */
 .cronica-info {
     position: absolute;
     bottom: 0;
@@ -379,7 +347,7 @@ body {
 }
 
 .cronica-resultado {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
     font-weight: 900;
     color: white;
     text-transform: uppercase;
@@ -387,21 +355,23 @@ body {
 }
 
 .cronica-goleadores {
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     font-weight: 400;
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Efecto hover: imagen sube, barra aparece desde abajo */
-.cronica-card:hover .cronica-imagen-wrapper {
-    transform: translateY(-80px);
+/* Efecto hover: imagen sube, barra aparece desde abajo (solo desktop) */
+@media (hover: hover) and (pointer: fine) {
+    .cronica-card:hover .cronica-imagen-wrapper {
+        transform: translateY(-80px);
+    }
+
+    .cronica-card:hover .cronica-info {
+        transform: translateY(0);
+    }
 }
 
-.cronica-card:hover .cronica-info {
-    transform: translateY(0);
-}
-
-/* --- 6. SECCIÓN CLASIFICACIÓN CON SLIDER ARRASTRABLE --- */
+/* --- 7. SECCIÓN CLASIFICACIÓN CON SLIDER ARRASTRABLE --- */
 .seccion-clasificacion {
     background-color: #1e73be;
     padding: 60px 0;
@@ -415,7 +385,7 @@ body {
 }
 
 .clasificacion-titulo {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 900;
     color: white;
     margin-bottom: 8px;
@@ -423,7 +393,7 @@ body {
 }
 
 .clasificacion-subtitulo {
-    font-size: 1rem;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -436,6 +406,7 @@ body {
     user-select: none;
     -webkit-user-select: none;
     padding: 20px 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 .slider-container:active {
@@ -449,7 +420,7 @@ body {
 .slider-track {
     display: flex;
     gap: 16px;
-    padding: 0 40px;
+    padding: 0 20px;
     transition: transform 0.1s ease-out;
     will-change: transform;
 }
@@ -472,9 +443,11 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.equipo-card:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.15);
+@media (hover: hover) and (pointer: fine) {
+    .equipo-card:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.15);
+    }
 }
 
 .slider-container.dragging .equipo-card:hover {
@@ -487,8 +460,10 @@ body {
     border: 2px solid rgba(30, 115, 190, 0.3);
 }
 
-.equipo-destacado:hover {
-    background: #e8dfc5;
+@media (hover: hover) and (pointer: fine) {
+    .equipo-destacado:hover {
+        background: #e8dfc5;
+    }
 }
 
 .equipo-destacado .equipo-nombre {
@@ -585,23 +560,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- 7. SECCIÓN CREMA --- */
-.seccion-blanca {
-    background-color: #f2e8cf;
-    color: #1e73be; 
-    padding: 100px 20px;
-    min-height: 100vh;
-}
-
-.contenido-demo {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.espaciador { height: 800px; }
-
-/* --- SECCIÓN JORNADAS --- */
+/* --- 8. SECCIÓN JORNADAS --- */
 .seccion-jornadas {
     background-color: #f2e8cf;
     padding: 60px 0;
@@ -615,7 +574,7 @@ body {
 }
 
 .jornadas-titulo {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 900;
     color: #1e73be;
     margin-bottom: 8px;
@@ -623,17 +582,17 @@ body {
 }
 
 .jornadas-subtitulo {
-    font-size: 1rem;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
     color: rgba(30, 115, 190, 0.7);
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 
 #slider-jornadas .slider-track {
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
-/* Carta de partido (mas grande) */
+/* Carta de partido */
 .partido-card {
     flex-shrink: 0;
     width: 280px;
@@ -648,9 +607,11 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.partido-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+@media (hover: hover) and (pointer: fine) {
+    .partido-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
 }
 
 .slider-container.dragging .partido-card:hover {
@@ -675,7 +636,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
 }
 
@@ -685,11 +646,12 @@ body {
     align-items: center;
     gap: 8px;
     flex: 1;
+    min-width: 0;
 }
 
 .partido-escudo {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background: white;
     border-radius: 50%;
     display: flex;
@@ -697,6 +659,7 @@ body {
     justify-content: center;
     padding: 6px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .partido-escudo img {
@@ -708,20 +671,22 @@ body {
 }
 
 .partido-nombre-equipo {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
     color: white;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.2;
-    max-width: 100px;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .partido-vs {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 900;
     color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
 }
 
 .partido-info {
@@ -747,14 +712,14 @@ body {
 }
 
 .partido-pabellon {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     font-style: italic;
 }
 
-/* --- SECCIÓN PLANTILLA --- */
+/* --- 9. SECCIÓN PLANTILLA --- */
 .seccion-plantilla {
     background-color: #1e73be;
     padding: 60px 20px;
@@ -767,7 +732,7 @@ body {
 }
 
 .plantilla-titulo {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 900;
     color: white;
     margin-bottom: 8px;
@@ -776,7 +741,7 @@ body {
 }
 
 .plantilla-subtitulo {
-    font-size: 1rem;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -811,9 +776,11 @@ body {
     padding: 8px;
 }
 
-.jugador-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+@media (hover: hover) and (pointer: fine) {
+    .jugador-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
 }
 
 /* Contenedor de la imagen */
@@ -848,13 +815,15 @@ body {
     transition: opacity 0.4s ease;
 }
 
-/* Efecto hover: imagen borrosa con overlay azulado */
-.jugador-card:hover .jugador-imagen {
-    filter: blur(4px);
-}
+/* Efecto hover: imagen borrosa con overlay azulado (solo desktop) */
+@media (hover: hover) and (pointer: fine) {
+    .jugador-card:hover .jugador-imagen {
+        filter: blur(4px);
+    }
 
-.jugador-card:hover .jugador-overlay {
-    opacity: 1;
+    .jugador-card:hover .jugador-overlay {
+        opacity: 1;
+    }
 }
 
 /* Información del jugador */
@@ -865,12 +834,14 @@ body {
     transition: transform 0.4s ease;
 }
 
-.jugador-card:hover .jugador-info {
-    transform: translateY(0);
+@media (hover: hover) and (pointer: fine) {
+    .jugador-card:hover .jugador-info {
+        transform: translateY(0);
+    }
 }
 
 .jugador-nombre {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
     font-weight: 900;
     color: white;
     text-transform: uppercase;
@@ -880,7 +851,7 @@ body {
 }
 
 .jugador-dato {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
     color: white;
     margin-bottom: 8px;
     font-family: 'Source Serif 4', Georgia, serif;
@@ -890,7 +861,8 @@ body {
     font-weight: 700;
     color: #f2e8cf;
 }
-/* --- SECCIÓN TIENDA --- */
+
+/* --- 10. SECCIÓN TIENDA --- */
 .seccion-tienda {
     background-color: #1e73be;
     padding: 60px 20px;
@@ -903,7 +875,7 @@ body {
 }
 
 .tienda-titulo {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 900;
     color: #f2e8cf;
     margin-bottom: 8px;
@@ -912,7 +884,7 @@ body {
 }
 
 .tienda-subtitulo {
-    font-size: 1rem;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
     color: rgba(242, 232, 207, 0.7);
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -923,17 +895,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 60px;
+    gap: 40px;
     max-width: 1100px;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 /* Imagen de la camiseta */
 .tienda-imagen {
-    flex: 0 0 450px;
+    flex: 1 1 300px;
+    max-width: 450px;
     background-color: #f2e8cf;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
@@ -946,12 +920,12 @@ body {
     display: block;
     border-radius: 8px;
     object-fit: contain;
-    max-height: 500px;
+    max-height: 450px;
 }
 
 /* Formulario de personalización */
 .tienda-formulario {
-    flex: 1;
+    flex: 1 1 300px;
     max-width: 450px;
 }
 
@@ -961,7 +935,7 @@ body {
 
 .formulario-label {
     display: block;
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
     font-weight: 900;
     color: #f2e8cf;
     margin-bottom: 10px;
@@ -1036,9 +1010,11 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: rgba(242, 232, 207, 0.15);
-    padding: 20px 25px;
+    padding: 20px;
     border-radius: 8px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .precio-info {
@@ -1048,7 +1024,7 @@ body {
 }
 
 .precio-label {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
     font-weight: 900;
     color: #f2e8cf;
     font-family: 'Oswald', sans-serif;
@@ -1056,13 +1032,13 @@ body {
 }
 
 .precio-descripcion {
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     color: rgba(242, 232, 207, 0.7);
     font-family: 'Source Serif 4', Georgia, serif;
 }
 
 .precio-valor {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     font-weight: 900;
     color: #f2e8cf;
     font-family: 'Oswald', sans-serif;
@@ -1076,7 +1052,7 @@ body {
     color: #1e73be;
     border: none;
     border-radius: 8px;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     font-weight: 900;
     letter-spacing: 2px;
     cursor: pointer;
@@ -1094,7 +1070,8 @@ body {
 .btn-comprar:active {
     transform: translateY(0);
 }
-/* --- FOOTER --- */
+
+/* --- 11. FOOTER --- */
 .footer {
     background-color: #f2e8cf;
     padding: 50px 20px 30px;
@@ -1124,7 +1101,7 @@ body {
 }
 
 .footer-nombre-club {
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
     font-weight: 900;
     color: #1e73be;
     font-family: 'Oswald', sans-serif;
@@ -1146,9 +1123,10 @@ body {
 .footer-contacto {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 40px;
     flex-wrap: wrap;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .footer-columna {
@@ -1156,10 +1134,11 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    min-width: 200px;
 }
 
 .footer-columna-titulo {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
     font-weight: 700;
     color: #1e73be;
     text-transform: uppercase;
@@ -1174,9 +1153,11 @@ body {
     gap: 10px;
     color: #1e73be;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem);
     font-family: 'Source Serif 4', Georgia, serif;
     transition: opacity 0.3s ease;
+    word-break: break-word;
+    text-align: center;
 }
 
 .footer-enlace:hover {
@@ -1198,7 +1179,7 @@ body {
 }
 
 .footer-copyright p {
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     color: rgba(30, 115, 190, 0.6);
     font-family: 'Source Serif 4', Georgia, serif;
 }
@@ -1215,15 +1196,107 @@ body {
     font-family: 'Oswald', sans-serif;
 }
 
-/* --- 8. RESPONSIVE --- */
-@media (max-width: 768px) {
-    .menu-lateral { width: 80%; right: -80%; }
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* --- TABLETS Y MÓVILES GRANDES (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+    .tienda-contenedor {
+        gap: 30px;
+    }
     
-    /* Crónicas responsive */
-    .cronicas-titulo {
-        font-size: 1.8rem;
+    .tienda-imagen {
+        flex: 1 1 100%;
+        max-width: 400px;
+    }
+    
+    .tienda-formulario {
+        flex: 1 1 100%;
+        max-width: 400px;
+    }
+}
+
+/* --- TABLETS (max-width: 768px) --- */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .barra-navegacion {
+        height: 70px;
+    }
+    
+    .menu-lateral {
+        top: 70px;
+        height: calc(100vh - 70px);
+        width: 100%;
+        max-width: 100%;
+        right: -100%;
+    }
+    
+    .enlaces-menu {
+        padding: 40px 30px;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .enlaces-menu li a {
+        font-size: 1.5rem;
+    }
+    
+    /* Hero */
+    .hero {
+        margin-top: -70px;
+        padding-top: 70px;
+        min-height: 400px;
+    }
+    
+    /* Historia responsive */
+    .historia-header {
+        padding: 0 20px;
     }
 
+    .historia-fila,
+    .historia-fila-invertida {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .historia-card {
+        width: 100%;
+        min-height: auto;
+        border-radius: 0;
+    }
+    
+    .historia-fila .historia-card:first-child {
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .historia-fila .historia-card:last-child {
+        border-radius: 0 0 12px 12px;
+    }
+
+    .historia-card-imagen {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .historia-card-texto {
+        width: 100%;
+        padding: 25px 20px;
+    }
+
+    .historia-img {
+        min-height: 200px;
+    }
+
+    /* En móvil, la foto siempre va primero */
+    .historia-fila-invertida .historia-card-imagen {
+        order: -1;
+    }
+    
+    /* Crónicas responsive */
     .cronicas-header {
         padding: 0 20px;
     }
@@ -1231,18 +1304,29 @@ body {
     .cronicas-contenedor {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
     
     .cronica-card {
-        width: 100%;
-        max-width: 350px;
+        max-width: 100%;
+        height: 220px;
+    }
+    
+    /* En móvil, mostrar siempre la info en crónicas */
+    .cronica-info {
+        transform: translateY(0);
+        padding: 12px 15px;
+    }
+    
+    .cronica-imagen-wrapper {
+        transform: translateY(0);
+    }
+    
+    .cronica-card .cronica-imagen-wrapper {
+        height: calc(100% - 60px);
     }
     
     /* Clasificación responsive */
-    .clasificacion-titulo {
-        font-size: 1.8rem;
-    }
-    
     .equipo-card {
         width: 120px;
         padding: 16px 12px;
@@ -1254,49 +1338,403 @@ body {
     }
     
     .slider-track {
-        padding: 0 20px;
+        padding: 0 15px;
         gap: 12px;
     }
 
-        /* Jornadas responsive */
-    .jornadas-titulo {
-        font-size: 1.8rem;
-    }
-    
+    /* Jornadas responsive */
     .partido-card {
         width: 240px;
         padding: 20px 15px;
     }
     
     .partido-escudo {
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .partido-equipos {
+        gap: 10px;
     }
     
     #slider-jornadas .slider-track {
-        padding: 0 20px;
+        padding: 0 15px;
     }
 
     /* Plantilla responsive */
-    .plantilla-titulo {
-        font-size: 1.8rem;
-    }
-
     .plantilla-fila {
         gap: 15px;
     }
 
     .jugador-card {
-        width: 100%;
-        max-width: 280px;
-        height: 300px;
+        width: calc(50% - 10px);
+        max-width: 200px;
+        height: 260px;
     }
-
+    
+    /* Jugadores en móvil - base oculto, se muestra con tap */
+    .jugador-overlay {
+        opacity: 0;
+        background: rgba(30, 115, 190, 0.85);
+        transition: opacity 0.3s ease;
+    }
+    
+    .jugador-imagen {
+        filter: none;
+        transition: filter 0.3s ease;
+    }
+    
+    .jugador-info {
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+        padding: 15px 10px;
+    }
+    
+    /* Cuando se toca la tarjeta de jugador */
+    .jugador-card.touch-active .jugador-overlay {
+        opacity: 1;
+    }
+    
+    .jugador-card.touch-active .jugador-imagen {
+        filter: blur(4px);
+    }
+    
+    .jugador-card.touch-active .jugador-info {
+        transform: translateY(0);
+    }
+    
     .jugador-nombre {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    
+    .jugador-dato {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+    
+    /* Tienda responsive */
+    .tienda-contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tienda-imagen {
+        width: 100%;
+        max-width: 350px;
+        padding: 15px;
+    }
+    
+    .tienda-formulario {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .precio-contenedor {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .precio-info {
+        align-items: center;
+    }
+    
+    /* Footer responsive */
+    .footer-contacto {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .footer-columna {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* --- MÓVILES (max-width: 480px) --- */
+@media (max-width: 480px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .barra-navegacion {
+        height: 60px;
+    }
+    
+    .contenedor-navbar {
+        padding: 0 15px;
+    }
+    
+    .contenedor-logo {
+        gap: 8px;
+    }
+    
+    .imagen-logo {
+        height: 35px;
+        width: 35px;
+    }
+    
+    .menu-lateral {
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+    
+    .enlaces-menu {
+        padding: 30px 20px;
+        gap: 18px;
+    }
+    
+    .enlaces-menu li a {
         font-size: 1.3rem;
     }
-
+    
+    /* Hero */
+    .hero {
+        margin-top: -60px;
+        padding-top: 60px;
+        min-height: 350px;
+    }
+    
+    /* Secciones */
+    .seccion-historia,
+    .seccion-cronicas,
+    .seccion-plantilla,
+    .seccion-tienda {
+        padding: 40px 15px;
+    }
+    
+    .seccion-clasificacion,
+    .seccion-jornadas {
+        padding: 40px 0;
+    }
+    
+    .historia-header,
+    .cronicas-header,
+    .clasificacion-header,
+    .jornadas-header,
+    .plantilla-header,
+    .tienda-header {
+        margin-bottom: 30px;
+    }
+    
+    /* Historia */
+    .historia-card-texto {
+        padding: 20px 15px;
+    }
+    
+    .historia-img {
+        min-height: 180px;
+    }
+    
+    /* Crónicas */
+    .cronica-card {
+        height: 200px;
+    }
+    
+    .cronica-card .cronica-imagen-wrapper {
+        height: calc(100% - 55px);
+    }
+    
+    .cronica-info {
+        padding: 10px 12px;
+    }
+    
+    /* Clasificación */
+    .equipo-card {
+        width: 110px;
+        padding: 14px 10px;
+        gap: 10px;
+    }
+    
+    .equipo-logo {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .equipo-nombre {
+        font-size: 0.65rem;
+        min-height: 28px;
+    }
+    
+    .equipo-puntos {
+        font-size: 1.3rem;
+    }
+    
+    .equipo-posicion {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    /* Jornadas */
+    .partido-card {
+        width: 220px;
+        padding: 18px 12px;
+        gap: 12px;
+    }
+    
+    .partido-escudo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .partido-nombre-equipo {
+        font-size: 0.6rem;
+    }
+    
+    .partido-jornada {
+        font-size: 0.75rem;
+    }
+    
+    .partido-fecha {
+        font-size: 0.85rem;
+    }
+    
+    .partido-hora {
+        font-size: 1rem;
+    }
+    
+    .partido-pabellon {
+        font-size: 0.65rem;
+    }
+    
+    /* Plantilla */
+    .plantilla-fila {
+        gap: 10px;
+    }
+    
+    .jugador-card {
+        width: calc(50% - 5px);
+        height: 220px;
+        padding: 5px;
+    }
+    
+    .jugador-nombre {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+    
     .jugador-dato {
+        font-size: 0.7rem;
+        margin-bottom: 3px;
+    }
+    
+    .jugador-info {
+        padding: 10px 8px;
+    }
+    
+    /* Tienda */
+    .tienda-imagen {
+        padding: 12px;
+    }
+    
+    .formulario-grupo {
+        margin-bottom: 20px;
+    }
+    
+    .formulario-input {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .talla-btn {
+        width: 48px;
+        height: 40px;
         font-size: 0.9rem;
+    }
+    
+    .precio-contenedor {
+        padding: 15px;
+    }
+    
+    .btn-comprar {
+        padding: 15px 25px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 40px 15px 25px;
+    }
+    
+    .footer-escudo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .footer-columna {
+        gap: 10px;
+    }
+    
+    .footer-enlace {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* --- MÓVILES MUY PEQUEÑOS (max-width: 360px) --- */
+@media (max-width: 360px) {
+    .contenedor-navbar {
+        padding: 0 10px;
+    }
+    
+    .nombre-club {
+        font-size: 0.8rem;
+    }
+    
+    .imagen-logo {
+        height: 30px;
+        width: 30px;
+    }
+    
+    .hamburger {
+        transform: scale(0.85);
+    }
+    
+    .equipo-card {
+        width: 100px;
+        padding: 12px 8px;
+    }
+    
+    .partido-card {
+        width: 200px;
+    }
+    
+    .jugador-card {
+        height: 200px;
+    }
+    
+    .jugador-nombre {
+        font-size: 0.75rem;
+    }
+    
+    .jugador-dato {
+        font-size: 0.65rem;
+    }
+    
+    .talla-btn {
+        width: 42px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+}
+
+/* --- LANDSCAPE EN MÓVILES --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+    
+    .menu-lateral {
+        padding-bottom: 20px;
+    }
+    
+    .enlaces-menu {
+        padding: 20px;
+        gap: 12px;
+    }
+    
+    .enlaces-menu li a {
+        font-size: 1.1rem;
     }
 }

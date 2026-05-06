@@ -2,14 +2,23 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Deportivo Cachucha | Oficial</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+    <meta name="description" content="Página oficial del Deportivo Cachucha - Fútbol Sala. Clasificación, jornadas, plantilla y tienda oficial.">
+    <meta name="theme-color" content="#1e73be">
+    
+    <!-- Preconnect para mejorar rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Hamburger Menu CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,10 +27,10 @@
         <div class="contenedor-navbar">
             <div class="contenedor-logo">
                 <h1 class="nombre-club" id="titulo-animado">DEPORTIVO CACHUCHA</h1>
-                <img src="img/cachucha.png" alt="Logo" class="imagen-logo" id="logo-magnetico">
+                <img src="img/cachucha.png" alt="Logo Deportivo Cachucha" class="imagen-logo" id="logo-magnetico">
             </div>
 
-            <button class="hamburger hamburger--emphatic" type="button" id="boton-menu">
+            <button class="hamburger hamburger--emphatic" type="button" id="boton-menu" aria-label="Abrir menú de navegación">
                 <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
                 </span>
@@ -29,12 +38,12 @@
         </div>
     </header>
 
-    <nav class="menu-lateral" id="menu-desplegable">
+    <nav class="menu-lateral" id="menu-desplegable" aria-label="Menú principal">
         <ul class="enlaces-menu">
             <li><a href="#Inicio">Inicio</a></li>
             <li><a href="#historia">Historia</a></li>
-            <li><a href="#cronicas">Cronicas</a></li>
-            <li><a href="#clasificacion">Clasificacion</a></li>
+            <li><a href="#cronicas">Crónicas</a></li>
+            <li><a href="#clasificacion">Clasificación</a></li>
             <li><a href="#jornadas">Jornadas</a></li>
             <li><a href="#plantilla">Plantilla</a></li>
             <li><a href="#tienda">Tienda</a></li>
@@ -43,78 +52,75 @@
     </nav>
 
     <main>
+        <!-- HERO SECTION -->
         <section class="hero" id="Inicio">
             <div class="hero-overlay"></div>
         </section>
 
-        <!-- NUEVA SECCIÓN: HISTORIA -->
-<section class="seccion-historia" id="historia">
-    <div class="historia-header">
-        <h2 class="historia-titulo">HISTORIA</h2>
-    </div>
-    
-    <!-- Fila 1: Historia del equipo - Foto izquierda, Texto derecha -->
-    <div class="historia-fila">
-        <div class="historia-card historia-card-imagen">
-            <img src="img/historia/fundacion.JPG" alt="Fundación del equipo" class="historia-img">
-        </div>
-        <div class="historia-card historia-card-texto">
-            <h3 class="historia-card-titulo">Nuestros Orígenes</h3>
-            <p class="historia-card-descripcion">
-                El Deportivo Cachucha nació de la pasión de un grupo de amigos por el fútbol sala. 
-                Lo que comenzó como partidos informales entre colegas, se convirtió en un proyecto 
-                deportivo que hoy compite en la Liga Local. Desde el primer día, nuestro objetivo 
-                ha sido disfrutar del deporte, crear comunidad y representar con orgullo nuestros colores.
-            </p>
-        </div>
-    </div>
+        <!-- SECCIÓN HISTORIA -->
+        <section class="seccion-historia" id="historia">
+            <div class="historia-header">
+                <h2 class="historia-titulo">HISTORIA</h2>
+            </div>
+            
+            <!-- Fila 1: Historia del equipo -->
+            <div class="historia-fila">
+                <div class="historia-card historia-card-imagen">
+                    <img src="img/historia/fundacion.JPG" alt="Fundación del equipo" class="historia-img" loading="lazy">
+                </div>
+                <div class="historia-card historia-card-texto">
+                    <h3 class="historia-card-titulo">Nuestros Orígenes</h3>
+                    <p class="historia-card-descripcion">
+                        El Deportivo Cachucha nació de la pasión de un grupo de amigos por el fútbol sala. 
+                        Lo que comenzó como partidos informales entre colegas, se convirtió en un proyecto 
+                        deportivo que hoy compite en la Liga Local. Desde el primer día, nuestro objetivo 
+                        ha sido disfrutar del deporte, crear comunidad y representar con orgullo nuestros colores.
+                    </p>
+                </div>
+            </div>
 
-    <!-- Fila 2: Patrocinadores - Texto izquierda, Foto derecha -->
-    <div class="historia-fila historia-fila-invertida">
-        <div class="historia-card historia-card-imagen">
-            <img src="img/historia/patrocinador1.jpeg" alt="Patrocinador principal" class="historia-img">
-        </div>
-        <div class="historia-card historia-card-texto">
-            <h3 class="historia-card-titulo">Primer Patrocinador - Ancha 13</h3>
-            <p class="historia-card-descripcion">
-                Nuestro primer patrocinador fue Ancha 13, una inmobiliaria local que creyó en nuestro proyecto desde el principio. Gracias a su apoyo, pudimos aportar una gran parte de los pagos necesarios para competir al máximo nivel en la liga del pueblo. 
-                Su compromiso con el deporte local ha sido fundamental para nuestro crecimiento y éxito. 
-                Siempre estaremos eternamente agradecidos por su confianza y apoyo incondicional.
-            </p>
-        </div>
-    </div>
+            <!-- Fila 2: Patrocinadores -->
+            <div class="historia-fila historia-fila-invertida">
+                <div class="historia-card historia-card-imagen">
+                    <img src="img/historia/patrocinador1.jpeg" alt="Patrocinador principal - Ancha 13" class="historia-img" loading="lazy">
+                </div>
+                <div class="historia-card historia-card-texto">
+                    <h3 class="historia-card-titulo">Primer Patrocinador - Ancha 13</h3>
+                    <p class="historia-card-descripcion">
+                        Nuestro primer patrocinador fue Ancha 13, una inmobiliaria local que creyó en nuestro proyecto desde el principio. Gracias a su apoyo, pudimos aportar una gran parte de los pagos necesarios para competir al máximo nivel en la liga del pueblo. 
+                        Su compromiso con el deporte local ha sido fundamental para nuestro crecimiento y éxito. 
+                        Siempre estaremos eternamente agradecidos por su confianza y apoyo incondicional.
+                    </p>
+                </div>
+            </div>
 
-    <!-- Fila 3: Más patrocinadores - Foto izquierda, Texto derecha -->
-    <div class="historia-fila">
-        <div class="historia-card historia-card-imagen">
-            <img src="img/historia/patrocinador2.jpeg" alt="Colaboradores" class="historia-img">
-        </div>
-        <div class="historia-card historia-card-texto">
-            <h3 class="historia-card-titulo">Segundo patrocinador - Local Social Las Canteras</h3>
-            <p class="historia-card-descripcion">
-                Local Social Las Canteras se unió a nuestro proyecto como segundo patrocinador, aportando su apoyo para cubrir los gastos de las equipaciones del equipo. 
-                Su colaboración ha sido esencial para que nuestros jugadores puedan competir con orgullo y comodidad, luciendo los colores del Deportivo Cachucha en cada partido.
-                 Agradecemos profundamente su compromiso con el deporte local y su contribución a nuestro crecimiento como club.
-            </p>
-        </div>
-    </div>
-</section>
-<!-- FIN SECCIÓN HISTORIA -->
+            <!-- Fila 3: Más patrocinadores -->
+            <div class="historia-fila">
+                <div class="historia-card historia-card-imagen">
+                    <img src="img/historia/patrocinador2.jpeg" alt="Colaboradores - Local Social Las Canteras" class="historia-img" loading="lazy">
+                </div>
+                <div class="historia-card historia-card-texto">
+                    <h3 class="historia-card-titulo">Segundo patrocinador - Local Social Las Canteras</h3>
+                    <p class="historia-card-descripcion">
+                        Local Social Las Canteras se unió a nuestro proyecto como segundo patrocinador, aportando su apoyo para cubrir los gastos de las equipaciones del equipo. 
+                        Su colaboración ha sido esencial para que nuestros jugadores puedan competir con orgullo y comodidad, luciendo los colores del Deportivo Cachucha en cada partido.
+                        Agradecemos profundamente su compromiso con el deporte local y su contribución a nuestro crecimiento como club.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-        <!-- NUEVA SECCIÓN: CRÓNICAS -->
+        <!-- SECCIÓN CRÓNICAS -->
         <section class="seccion-cronicas" id="cronicas">
-            <!-- Barra azul con el título -->
             <div class="cronicas-header">
                 <h2 class="cronicas-titulo">CRÓNICAS</h2>
             </div>
             
-            <!-- Contenedor de las tres cartas -->
             <div class="cronicas-contenedor">
-                
                 <!-- Carta 1 -->
                 <article class="cronica-card">
                     <div class="cronica-imagen-wrapper">
-                        <img src="img/cronicas/partido1.jpeg" alt="Partido 1" class="cronica-imagen">
+                        <img src="img/cronicas/partido1.jpeg" alt="Partido contra Const. Rey Panorama FS" class="cronica-imagen" loading="lazy">
                     </div>
                     <div class="cronica-info">
                         <div class="cronica-resultado">Const. Rey Panorama FS 2-1 Deportivo Cachucha</div>
@@ -125,7 +131,7 @@
                 <!-- Carta 2 -->
                 <article class="cronica-card">
                     <div class="cronica-imagen-wrapper">
-                        <img src="img/cronicas/partido2.jpeg" alt="Partido 2" class="cronica-imagen">
+                        <img src="img/cronicas/partido2.jpeg" alt="Partido contra Yunquera 2010" class="cronica-imagen" loading="lazy">
                     </div>
                     <div class="cronica-info">
                         <div class="cronica-resultado">Deportivo Cachucha 3-3 Yunquera 2010</div>
@@ -133,20 +139,18 @@
                     </div>
                 </article>
 
-                 <!-- Carta 3 -->
-
+                <!-- Carta 3 -->
                 <article class="cronica-card">
                     <div class="cronica-imagen-wrapper">
-                        <img src="img/cronicas/partido3.JPG" alt="Partido 3" class="cronica-imagen">
+                        <img src="img/cronicas/partido3.JPG" alt="Partido contra CD Luis Beardo" class="cronica-imagen" loading="lazy">
                     </div>
                     <div class="cronica-info">
                         <div class="cronica-resultado">CD Luis Beardo 4-0 Deportivo Cachucha</div>
+                        <div class="cronica-goleadores"></div>
                     </div>
                 </article>
-
             </div>
         </section>
-        <!-- FIN SECCIÓN CRÓNICAS -->
 
         <!-- SECCIÓN CLASIFICACIÓN -->
         <section class="seccion-clasificacion" id="clasificacion">
@@ -157,9 +161,11 @@
             
             <div class="slider-container" id="slider-clasificacion">
                 <div class="slider-track" id="slider-track">
+                    <!-- Generado dinámicamente por JavaScript -->
                 </div>
             </div>
         </section>
+
         <!-- SECCIÓN JORNADAS -->
         <section class="seccion-jornadas" id="jornadas">
             <div class="jornadas-header">
@@ -169,6 +175,7 @@
     
             <div class="slider-container" id="slider-jornadas">
                 <div class="slider-track" id="slider-track-jornadas">
+                    <!-- Generado dinámicamente por JavaScript -->
                 </div>
             </div>
         </section>
@@ -184,7 +191,7 @@
             <div class="plantilla-fila">
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador1.jpg" alt="Jugador 1" class="jugador-imagen">
+                        <img src="img/plantilla/jugador1.jpg" alt="David Cazo" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">David Cazo</h3>
@@ -199,7 +206,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador2.jpg" alt="Jugador 2" class="jugador-imagen">
+                        <img src="img/plantilla/jugador2.jpg" alt="Pedro Alcedo" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Pedro Alcedo</h3>
@@ -214,7 +221,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador3.jpg" alt="Jugador 3" class="jugador-imagen">
+                        <img src="img/plantilla/jugador3.jpg" alt="Antonio Guerrero" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Antonio Guerrero</h3>
@@ -229,7 +236,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador4.jpeg" alt="Jugador 4" class="jugador-imagen">
+                        <img src="img/plantilla/jugador4.jpeg" alt="Salvador Ocón" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Salvador Ocón</h3>
@@ -247,7 +254,7 @@
             <div class="plantilla-fila">
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador5.jpeg" alt="Jugador 5" class="jugador-imagen">
+                        <img src="img/plantilla/jugador5.jpeg" alt="Álvaro Ruíz" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Álvaro Ruíz</h3>
@@ -262,7 +269,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador6.jpg" alt="Jugador 6" class="jugador-imagen">
+                        <img src="img/plantilla/jugador6.jpg" alt="Viorel" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Viorel</h3>
@@ -277,7 +284,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador7.jpeg" alt="Jugador 7" class="jugador-imagen">
+                        <img src="img/plantilla/jugador7.jpeg" alt="Victor Montes" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Victor Montes</h3>
@@ -292,7 +299,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador8.jpg" alt="Jugador 8" class="jugador-imagen">
+                        <img src="img/plantilla/jugador8.jpg" alt="Álvaro Daneri" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Álvaro Daneri</h3>
@@ -310,7 +317,7 @@
             <div class="plantilla-fila">
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador9.jpg" alt="Jugador 9" class="jugador-imagen">
+                        <img src="img/plantilla/jugador9.jpg" alt="Oliver Zurita" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Oliver Zurita</h3>
@@ -325,7 +332,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador10.jpg" alt="Jugador 10" class="jugador-imagen">
+                        <img src="img/plantilla/jugador10.jpg" alt="Raúl Beardo" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Raúl Beardo</h3>
@@ -340,7 +347,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador11.jpg" alt="Jugador 11" class="jugador-imagen">
+                        <img src="img/plantilla/jugador11.jpg" alt="Iván Amaya" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Iván Amaya</h3>
@@ -355,7 +362,7 @@
 
                 <article class="jugador-card">
                     <div class="jugador-imagen-wrapper">
-                        <img src="img/plantilla/jugador12.jpeg" alt="Jugador 12" class="jugador-imagen">
+                        <img src="img/plantilla/jugador12.jpeg" alt="Cristian Manzano" class="jugador-imagen" loading="lazy">
                         <div class="jugador-overlay">
                             <div class="jugador-info">
                                 <h3 class="jugador-nombre">Cristian Manzano</h3>
@@ -369,8 +376,8 @@
                 </article>
             </div>
         </section>
-        <!-- FIN SECCIÓN PLANTILLA -->
-         <!-- SECCIÓN TIENDA -->
+
+        <!-- SECCIÓN TIENDA -->
         <section class="seccion-tienda" id="tienda">
             <div class="tienda-header">
                 <h2 class="tienda-titulo">TIENDA</h2>
@@ -386,14 +393,14 @@
                 <!-- Formulario de personalización -->
                 <div class="tienda-formulario">
                     <div class="formulario-grupo">
-                        <label class="formulario-label">NOMBRE</label>
-                        <input type="text" class="formulario-input" placeholder="EJ: GUERRERO" maxlength="12" id="input-nombre">
+                        <label class="formulario-label" for="input-nombre">NOMBRE</label>
+                        <input type="text" class="formulario-input" placeholder="EJ: GUERRERO" maxlength="12" id="input-nombre" autocomplete="off">
                         <span class="formulario-ayuda">Máximo 12 caracteres</span>
                     </div>
 
                     <div class="formulario-grupo">
-                        <label class="formulario-label">DORSAL</label>
-                        <input type="number" class="formulario-input" placeholder="Ej: 10" min="1" max="99" id="input-dorsal">
+                        <label class="formulario-label" for="input-dorsal">DORSAL</label>
+                        <input type="number" class="formulario-input" placeholder="Ej: 10" min="1" max="99" id="input-dorsal" autocomplete="off">
                         <span class="formulario-ayuda">Número del 1 al 99</span>
                     </div>
 
@@ -424,6 +431,7 @@
             </div>
         </section>
     </main>
+
     <!-- FOOTER -->
     <footer class="footer" id="contacto">
         <div class="footer-contenedor">
@@ -440,8 +448,8 @@
             <div class="footer-contacto">
                 <div class="footer-columna">
                     <h4 class="footer-columna-titulo">Equipo</h4>
-                    <a href="https://instagram.com/deportivocachuchafs" target="_blank" class="footer-enlace">
-                        <svg class="footer-icono" viewBox="0 0 24 24" fill="currentColor">
+                    <a href="https://instagram.com/deportivocachuchafs" target="_blank" rel="noopener noreferrer" class="footer-enlace">
+                        <svg class="footer-icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                         @deportivocachuchafs
@@ -450,14 +458,14 @@
 
                 <div class="footer-columna">
                     <h4 class="footer-columna-titulo">Desarrollador</h4>
-                    <a href="https://www.instagram.com/antonioo_guerrero/" target="_blank" class="footer-enlace">
-                        <svg class="footer-icono" viewBox="0 0 24 24" fill="currentColor">
+                    <a href="https://www.instagram.com/antonioo_guerrero/" target="_blank" rel="noopener noreferrer" class="footer-enlace">
+                        <svg class="footer-icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                         @antonioo_guerrero
                     </a>
                     <a href="mailto:anguera2004@gmail.com" class="footer-enlace">
-                        <svg class="footer-icono" viewBox="0 0 24 24" fill="currentColor">
+                        <svg class="footer-icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
                         anguera2004@gmail.com
@@ -471,7 +479,6 @@
             </div>
         </div>
     </footer>
-    <!-- FIN FOOTER -->
 
     <script src="script.js"></script>
 </body>

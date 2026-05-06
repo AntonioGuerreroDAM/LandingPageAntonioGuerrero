@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. EFECTO MAGNÉTICO (ESCUDO) ---
+    // --- 4. EFECTO MAGNÉTICO (ESCUDO) - Solo en desktop ---
     const logo = document.querySelector('#logo-magnetico');
-    if (logo) {
+    if (logo && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         logo.addEventListener('mousemove', (e) => {
             const { left, top, width, height } = logo.getBoundingClientRect();
             const x = (e.clientX - (left + width / 2)) * 0.4;
@@ -56,6 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 5. SLIDER DE CLASIFICACIÓN ARRASTRABLE ---
     initClasificacionSlider();
+    
+    // --- 6. SLIDER DE JORNADAS ARRASTRABLE ---
+    initJornadasSlider();
+    
+    // --- 7. TIENDA - SELECCIÓN DE TALLAS ---
+    initTienda();
+    
+    // --- 8. SOPORTE TOUCH PARA CRÓNICAS EN MÓVIL ---
+    initCronicasTouch();
+    
+    // --- 9. SOPORTE TOUCH PARA JUGADORES EN MÓVIL ---
+    initJugadoresTouch();
 });
 
 function initClasificacionSlider() {
@@ -81,7 +93,6 @@ function initClasificacionSlider() {
         { nombre: "Recre FS", escudo: "img/escudo/recre.png", puntos: 0 },
     ];
 
-    // NUEVO: Variable para guardar el índice del equipo destacado
     let indiceEquipoDestacado = -1;
 
     equipos.forEach((equipo, index) => {
@@ -91,7 +102,6 @@ function initClasificacionSlider() {
         const esDeportivoCachucha = equipo.nombre === "Deportivo Cachucha";
         card.className = esDeportivoCachucha ? 'equipo-card equipo-destacado' : 'equipo-card';
         
-        // NUEVO: Guardar el índice del equipo destacado
         if (esDeportivoCachucha) {
             indiceEquipoDestacado = index;
         }
@@ -114,132 +124,9 @@ function initClasificacionSlider() {
         sliderTrack.appendChild(card);
     });
 
-    let isDragging = false;
-    let startX = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let animationID = 0;
-
-    function getSliderBounds() {
-        const trackWidth = sliderTrack.scrollWidth;
-        const containerWidth = sliderContainer.offsetWidth;
-        const maxTranslate = 0;
-        const minTranslate = -(trackWidth - containerWidth);
-        return { minTranslate, maxTranslate };
-    }
-
-    // NUEVO: Función para centrar el slider en el equipo destacado
-    function centrarEnEquipoDestacado() {
-        if (indiceEquipoDestacado === -1) return;
-        
-        // Obtener todas las tarjetas
-        const tarjetas = sliderTrack.querySelectorAll('.equipo-card');
-        if (tarjetas.length === 0) return;
-        
-        // Obtener la tarjeta destacada
-        const tarjetaDestacada = tarjetas[indiceEquipoDestacado];
-        if (!tarjetaDestacada) return;
-        
-        // Calcular la posición para centrar la tarjeta en el contenedor
-        const containerWidth = sliderContainer.offsetWidth;
-        const tarjetaWidth = tarjetaDestacada.offsetWidth;
-        const tarjetaLeft = tarjetaDestacada.offsetLeft;
-        
-        // Posición para centrar: mover el track para que la tarjeta quede en el centro
-        let posicionCentrada = -(tarjetaLeft - (containerWidth / 2) + (tarjetaWidth / 2));
-        
-        // Asegurarse de no pasar los límites
-        const { minTranslate, maxTranslate } = getSliderBounds();
-        if (posicionCentrada > maxTranslate) {
-            posicionCentrada = maxTranslate;
-        } else if (posicionCentrada < minTranslate) {
-            posicionCentrada = minTranslate;
-        }
-        
-        // Aplicar la posición
-        currentTranslate = posicionCentrada;
-        prevTranslate = posicionCentrada;
-        sliderTrack.style.transform = `translateX(${posicionCentrada}px)`;
-    }
-
-    // NUEVO: Centrar en el equipo destacado al cargar la página
-    // Usamos setTimeout para asegurar que el DOM esté completamente renderizado
-    setTimeout(centrarEnEquipoDestacado, 100);
-
-    sliderContainer.addEventListener('mousedown', dragStart);
-    sliderContainer.addEventListener('mousemove', drag);
-    sliderContainer.addEventListener('mouseup', dragEnd);
-    sliderContainer.addEventListener('mouseleave', dragEnd);
-
-    sliderContainer.addEventListener('touchstart', dragStart, { passive: true });
-    sliderContainer.addEventListener('touchmove', drag, { passive: false });
-    sliderContainer.addEventListener('touchend', dragEnd);
-
-    function dragStart(e) {
-        isDragging = true;
-        startX = getPositionX(e);
-        sliderContainer.classList.add('dragging');
-        animationID = requestAnimationFrame(animation);
-    }
-
-    function drag(e) {
-        if (!isDragging) return;
-        
-        const currentX = getPositionX(e);
-        const diff = currentX - startX;
-        currentTranslate = prevTranslate + diff;
-
-        const { minTranslate, maxTranslate } = getSliderBounds();
-        
-        if (currentTranslate > maxTranslate) {
-            currentTranslate = maxTranslate + (currentTranslate - maxTranslate) * 0.2;
-        } else if (currentTranslate < minTranslate) {
-            currentTranslate = minTranslate + (currentTranslate - minTranslate) * 0.2;
-        }
-
-        if (e.type === 'touchmove') {
-            e.preventDefault();
-        }
-    }
-
-    function dragEnd() {
-        if (!isDragging) return;
-        
-        isDragging = false;
-        cancelAnimationFrame(animationID);
-        sliderContainer.classList.remove('dragging');
-
-        const { minTranslate, maxTranslate } = getSliderBounds();
-        
-        if (currentTranslate > maxTranslate) {
-            currentTranslate = maxTranslate;
-        } else if (currentTranslate < minTranslate) {
-            currentTranslate = minTranslate;
-        }
-
-        prevTranslate = currentTranslate;
-        setSliderPosition();
-    }
-
-    function getPositionX(e) {
-        return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    }
-
-    function animation() {
-        setSliderPosition();
-        if (isDragging) {
-            requestAnimationFrame(animation);
-        }
-    }
-
-    function setSliderPosition() {
-        sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
-    }
-
-    sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
-
-    // --- 6. SLIDER DE JORNADAS ARRASTRABLE ---
-initJornadasSlider();
+    // Inicializar sistema de arrastre
+    initDragSlider(sliderContainer, sliderTrack, indiceEquipoDestacado);
+}
 
 function initJornadasSlider() {
     const sliderContainer = document.getElementById('slider-jornadas');
@@ -247,7 +134,6 @@ function initJornadasSlider() {
     
     if (!sliderContainer || !sliderTrack) return;
 
-    // Array de partidos (14 jornadas)
     const partidos = [
         { 
             jornada: 1,
@@ -358,7 +244,6 @@ function initJornadasSlider() {
     partidos.forEach((partido) => {
         const card = document.createElement('div');
         
-        // Destacar si juega el Deportivo Cachucha
         const esPartidoCachucha = partido.local.nombre === "Deportivo Cachucha" || 
                                    partido.visitante.nombre === "Deportivo Cachucha";
         card.className = esPartidoCachucha ? 'partido-card partido-destacado' : 'partido-card';
@@ -390,26 +275,61 @@ function initJornadasSlider() {
         sliderTrack.appendChild(card);
     });
 
-    // Sistema de arrastre (igual que clasificacion)
+    // Inicializar sistema de arrastre
+    initDragSlider(sliderContainer, sliderTrack);
+}
+
+function initDragSlider(sliderContainer, sliderTrack, centrarEnIndice = -1) {
     let isDragging = false;
     let startX = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID = 0;
+    let startTime = 0;
+    let startPos = 0;
 
     function getSliderBounds() {
         const trackWidth = sliderTrack.scrollWidth;
         const containerWidth = sliderContainer.offsetWidth;
         const maxTranslate = 0;
-        const minTranslate = -(trackWidth - containerWidth);
+        const minTranslate = Math.min(0, -(trackWidth - containerWidth));
         return { minTranslate, maxTranslate };
     }
 
+    // Función para centrar en un índice específico
+    function centrarEnElemento(indice) {
+        if (indice === -1) return;
+        
+        const elementos = sliderTrack.children;
+        if (elementos.length === 0 || !elementos[indice]) return;
+        
+        const elemento = elementos[indice];
+        const containerWidth = sliderContainer.offsetWidth;
+        const elementoWidth = elemento.offsetWidth;
+        const elementoLeft = elemento.offsetLeft;
+        
+        let posicionCentrada = -(elementoLeft - (containerWidth / 2) + (elementoWidth / 2));
+        
+        const { minTranslate, maxTranslate } = getSliderBounds();
+        posicionCentrada = Math.max(minTranslate, Math.min(maxTranslate, posicionCentrada));
+        
+        currentTranslate = posicionCentrada;
+        prevTranslate = posicionCentrada;
+        sliderTrack.style.transform = `translateX(${posicionCentrada}px)`;
+    }
+
+    // Centrar en el elemento destacado después de cargar
+    if (centrarEnIndice !== -1) {
+        setTimeout(() => centrarEnElemento(centrarEnIndice), 100);
+    }
+
+    // Eventos de mouse
     sliderContainer.addEventListener('mousedown', dragStart);
     sliderContainer.addEventListener('mousemove', drag);
     sliderContainer.addEventListener('mouseup', dragEnd);
     sliderContainer.addEventListener('mouseleave', dragEnd);
 
+    // Eventos táctiles
     sliderContainer.addEventListener('touchstart', dragStart, { passive: true });
     sliderContainer.addEventListener('touchmove', drag, { passive: false });
     sliderContainer.addEventListener('touchend', dragEnd);
@@ -417,6 +337,8 @@ function initJornadasSlider() {
     function dragStart(e) {
         isDragging = true;
         startX = getPositionX(e);
+        startTime = Date.now();
+        startPos = currentTranslate;
         sliderContainer.classList.add('dragging');
         animationID = requestAnimationFrame(animation);
     }
@@ -430,6 +352,7 @@ function initJornadasSlider() {
 
         const { minTranslate, maxTranslate } = getSliderBounds();
         
+        // Efecto de resistencia en los bordes
         if (currentTranslate > maxTranslate) {
             currentTranslate = maxTranslate + (currentTranslate - maxTranslate) * 0.2;
         } else if (currentTranslate < minTranslate) {
@@ -450,6 +373,19 @@ function initJornadasSlider() {
 
         const { minTranslate, maxTranslate } = getSliderBounds();
         
+        // Calcular velocidad para inercia
+        const endTime = Date.now();
+        const timeDiff = endTime - startTime;
+        const distance = currentTranslate - startPos;
+        const velocity = distance / timeDiff;
+        
+        // Aplicar inercia suave
+        if (Math.abs(velocity) > 0.5 && timeDiff < 300) {
+            const momentum = velocity * 150;
+            currentTranslate += momentum;
+        }
+        
+        // Asegurar límites
         if (currentTranslate > maxTranslate) {
             currentTranslate = maxTranslate;
         } else if (currentTranslate < minTranslate) {
@@ -457,7 +393,14 @@ function initJornadasSlider() {
         }
 
         prevTranslate = currentTranslate;
+        
+        // Transición suave al soltar
+        sliderTrack.style.transition = 'transform 0.3s ease-out';
         setSliderPosition();
+        
+        setTimeout(() => {
+            sliderTrack.style.transition = 'transform 0.1s ease-out';
+        }, 300);
     }
 
     function getPositionX(e) {
@@ -475,28 +418,34 @@ function initJornadasSlider() {
         sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
     }
 
+    // Prevenir arrastre de imágenes
     sliderTrack.addEventListener('dragstart', (e) => e.preventDefault());
+    
+    // Recalcular posición en resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const { minTranslate, maxTranslate } = getSliderBounds();
+            currentTranslate = Math.max(minTranslate, Math.min(maxTranslate, currentTranslate));
+            prevTranslate = currentTranslate;
+            setSliderPosition();
+        }, 100);
+    });
 }
-// ==========================================
-    // TIENDA - SELECCIÓN DE TALLAS
-    // ==========================================
+
+function initTienda() {
     const tallaBtns = document.querySelectorAll('.talla-btn');
     let tallaSeleccionada = null;
 
     tallaBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Quitar clase activo de todos los botones
             tallaBtns.forEach(b => b.classList.remove('activo'));
-            // Agregar clase activo al botón clicado
             this.classList.add('activo');
-            // Guardar la talla seleccionada
             tallaSeleccionada = this.dataset.talla;
         });
     });
 
-    // ==========================================
-    // TIENDA - BOTÓN COMPRAR
-    // ==========================================
     const btnComprar = document.getElementById('btn-comprar');
     const inputNombre = document.getElementById('input-nombre');
     const inputDorsal = document.getElementById('input-dorsal');
@@ -506,7 +455,6 @@ function initJornadasSlider() {
             const nombre = inputNombre ? inputNombre.value.trim() : '';
             const dorsal = inputDorsal ? inputDorsal.value : '';
 
-            // Validaciones
             if (!nombre) {
                 alert('Por favor, introduce un nombre para la camiseta.');
                 return;
@@ -522,8 +470,64 @@ function initJornadasSlider() {
                 return;
             }
 
-            // Mostrar resumen de la compra
-            alert(`¡Gracias por tu compra!\n\nResumen:\n- Nombre: ${nombre.toUpperCase()}\n- Dorsal: ${dorsal}\n- Talla: ${tallaSeleccionada}\n- Precio: 35€\n\nTe contactaremos pronto para confirmar el pedido.`);
+            // Crear mensaje de WhatsApp
+            const mensaje = `¡Hola! Me gustaría comprar una camiseta del Deportivo Cachucha:\n\n` +
+                           `📝 Nombre: ${nombre}\n` +
+                           `🔢 Dorsal: ${dorsal}\n` +
+                           `📏 Talla: ${tallaSeleccionada}\n` +
+                           `💰 Precio: 25€`;
+            
+            const numeroWhatsApp = '34612345678'; // Cambiar por el número real
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            
+            window.open(urlWhatsApp, '_blank');
         });
     }
+}
+
+function initCronicasTouch() {
+    // Solo para dispositivos táctiles
+    if (!('ontouchstart' in window)) return;
+    
+    const cronicaCards = document.querySelectorAll('.cronica-card');
+    
+    cronicaCards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+            // Remover clase activa de otras cartas
+            cronicaCards.forEach(c => c.classList.remove('touch-active'));
+            this.classList.add('touch-active');
+        });
+    });
+    
+    // Cerrar al tocar fuera
+    document.addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.cronica-card')) {
+            cronicaCards.forEach(c => c.classList.remove('touch-active'));
+        }
+    });
+}
+
+function initJugadoresTouch() {
+    // Solo para dispositivos táctiles
+    if (!('ontouchstart' in window)) return;
+    
+    const jugadorCards = document.querySelectorAll('.jugador-card');
+    
+    jugadorCards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+            // Toggle clase activa
+            const wasActive = this.classList.contains('touch-active');
+            jugadorCards.forEach(c => c.classList.remove('touch-active'));
+            if (!wasActive) {
+                this.classList.add('touch-active');
+            }
+        });
+    });
+    
+    // Cerrar al tocar fuera
+    document.addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.jugador-card')) {
+            jugadorCards.forEach(c => c.classList.remove('touch-active'));
+        }
+    });
 }
