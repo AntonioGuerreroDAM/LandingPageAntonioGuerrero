@@ -1,3 +1,18 @@
+// --- CONFIGURACIÓN DE FIREBASE (usando versión compat cargada en el HTML) ---
+const firebaseConfig = {
+    apiKey: "AIzaSyDLpznSL-TrI7_R9SO4p-3o-hf0uqoTZvk",
+    authDomain: "deportivo-cachucha-tienda.firebaseapp.com",
+    projectId: "deportivo-cachucha-tienda",
+    storageBucket: "deportivo-cachucha-tienda.firebasestorage.app",
+    messagingSenderId: "22136912604",
+    appId: "1:22136912604:web:d38fb52faa3a8fdf57d219",
+    measurementId: "G-T6KWDHN757"
+};
+
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. ACTIVACIÓN DEL BOTÓN Y MENÚ LATERAL ---
@@ -470,17 +485,25 @@ function initTienda() {
                 return;
             }
 
-            // Crear mensaje de WhatsApp
-            const mensaje = `¡Hola! Me gustaría comprar una camiseta del Deportivo Cachucha:\n\n` +
-                           `📝 Nombre: ${nombre}\n` +
-                           `🔢 Dorsal: ${dorsal}\n` +
-                           `📏 Talla: ${tallaSeleccionada}\n` +
-                           `💰 Precio: 25€`;
-            
-            const numeroWhatsApp = '34612345678'; // Cambiar por el número real
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-            
-            window.open(urlWhatsApp, '_blank');
+            // GUARDAR EN FIREBASE
+            db.collection("pedidos").add({
+                Nombre: nombre,
+                Dorsal: parseInt(dorsal),
+                Talla: tallaSeleccionada,
+                Fecha: new Date().toLocaleString()
+            })
+            .then(function(docRef) {
+                alert("¡Pedido realizado con éxito! ID: " + docRef.id);
+                // Limpiar campos
+                inputNombre.value = "";
+                inputDorsal.value = "";
+                tallaBtns.forEach(btn => btn.classList.remove('activo'));
+                tallaSeleccionada = null;
+            })
+            .catch(function(error) {
+                console.error("Error al guardar en Firebase:", error);
+                alert("Hubo un error al procesar el pedido. Inténtalo de nuevo.");
+            });
         });
     }
 }

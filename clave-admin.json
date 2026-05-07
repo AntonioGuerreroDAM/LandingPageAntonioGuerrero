@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "deportivo-cachucha-tienda",
+  "private_key_id": "601a7f3831f617dd0d0eebcef81dae201ace9476",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC7WfEyQHzd0rDK\nSLVp4UoTzWMElPq7icDjmQJ3Z6xjXrzXb4NBPQFw+joQNcwz5o8wjSBJZ8G7lA9c\nSdaCKAl4Hq7A+H30ayFXPLZm/i+n5UJxO3sncjakLIcj04dY/BVbI1yYrpAyaLOs\nCQU+ZuT+GbOW5ldUN+Xp0IZV7qtLojJ1darMiO1E611QrAYgARHX7o5llxJXQvj+\nNGddXELHv+xbGRTGlLlYGn2aJt33vNZSTxMrac7xBcyKpyZkMVFzcobwc5oARAoz\nbQa8HO5mnndRr6eeVluKvr1Ny7960vdhHW9ktrt4hFGHJmHOmaQI5mThuEs24oEV\njmRfVyf1AgMBAAECggEAD1tEzG2Bw/2S6nnBjk9eRDeXuqvqzg1xXJZ8Sm+ahJNN\nikvEfUf0AsqCkN/qqtm7+er6Ga+Mry891RQ4+3aEVC67p0CXCROblNbP+AA0xXUi\nwuebusoqABSlnRenu/D/Cnc1uKQdA1dsBsQUhHQS/WBQ7/kAcSbwdv+rIIcNeQeg\nuRpIc9c2S/HWBxcMDxHLy22M57APmlCSjSNeD/qn5I3IjYI2h/nAwzD/LZWxvP8w\nNrbiTl/A6ZnfRM+nrwc17wsial3RXBVy3J9v9Bakvjy4mCZ+dXc6l8LRKNs6pcTl\nGBFHoXjwdT8s/Q2z4Q9f6uR5ont+3S7klq67e+/bkQKBgQDgds/cjhaaZ2j73LN2\nVYXgP4AQO0q8k35q4amJhGlroWaVo8yn8mduttZyIPfDdDa7PLfwvGF/R1Zv36k3\nN4WKbDvyBL2ylrA3+lj7ULwMGIiysLSzQLv7kgXgED5y/eCkDzXvFPTNytNlCTef\n+umt2Xe8eN+42aB4N4YJFjO4vQKBgQDVrFBQ7TeQtRMnJkGgiVWfm0ZHdfATOBRq\nw7k35pd1T11MCwR2ckMZQtCvEIWLSFSnFhwkMVCry/W9fPvUaCyuRlB+Hgg4CP7u\nO7uXamWaHq1OZoSgotB8R5riazIf8BDGtnblhVXdJhyFEUilwMF+AAMAbqNOv3Dc\nDRwBuV4rmQKBgCbhba/ujMvCDdVSrWNZ/Q6S8UPegVuY0NUCsbM4VGpoUrSo4tJU\nksYCtbKfM0uP3cshAVuZxemeGcLXIyCFZYRMqzWIzLMalvubSb5+hZQyy7roEOTb\n2bQB3zKonaidgUPpvpXjM2RSNbvSlOgJNmD+wlbLOTVzvPAV7gm05tChAoGBAK9L\nrKCX3IwlYc8ufYy83rgQZTnfMdQyn91vMRcBYKRnNf1a1JBv8UhaHmZhQY4hCwIB\nC5lNtAcdTz/jt55s0KsxGHw/GzMNfkfoTWBNc4lbPYciaBB5Ql2TSSgUFY1KIBlG\nPIjUOLsztxYcNeN2HcfHLq8+FVBXkrmVL7LiZrWRAoGBAL3LyRccHiK1UXb0FKUS\nnu2n6jZ8nhQUcboKa48zNutXTSJ578j3rn3sZhqRSzkCtsLkkhBbLPKQLPzYEDWw\nV7/1UZn2wHMKiYEY0Olc0y2YCKOmkNi09CvbGsCiHrAZDDtg5QnMkTJBk99HkTQW\nseqzz5jJ/BPybTCR+zMGApoi\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@deportivo-cachucha-tienda.iam.gserviceaccount.com",
+  "client_id": "111015978265917165264",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40deportivo-cachucha-tienda.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
