@@ -1,6 +1,6 @@
-// --- CONFIGURACIÓN DE FIREBASE (usando versión compat cargada en el HTML) ---
+// --- CONFIGURACIÓN DE FIREBASE (usando versión compat cargada en el HTML) --
 const firebaseConfig = {
-    apiKey: "AIzaSyDLpznSL-TrI" + "7_R9SO4p-3o-hf0uqoTZvk",
+    apiKey: "AIzaSyBSrPDaUOdlPMZ" + "rsMuUHXAJlIkWPXLvPDQ",
     authDomain: "deportivo-cachucha-tienda.firebaseapp.com",
     projectId: "deportivo-cachucha-tienda",
     storageBucket: "deportivo-cachucha-tienda.firebasestorage.app",
@@ -9,7 +9,7 @@ const firebaseConfig = {
     measurementId: "G-T6KWDHN757"
 };
 
-//Inicializar Firebase
+//Inicializar Firebase.
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
