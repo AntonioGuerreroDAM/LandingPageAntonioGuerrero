@@ -79,11 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
     initTienda();
     
     // --- 8. SOPORTE TOUCH PARA CRÓNICAS EN MÓVIL ---
+    syncCronicasInfoHeight();
     initCronicasTouch();
     
     // --- 9. SOPORTE TOUCH PARA JUGADORES EN MÓVIL ---
     initJugadoresTouch();
+    initTouchOverlayClose();
+
+    window.addEventListener('resize', syncCronicasInfoHeight);
 });
+
+function syncCronicasInfoHeight() {
+    const cronicaCards = document.querySelectorAll('.cronica-card');
+
+    cronicaCards.forEach(card => {
+        const info = card.querySelector('.cronica-info');
+        if (!info) return;
+
+        card.style.setProperty('--cronica-info-height', `${info.offsetHeight}px`);
+    });
+}
 
 function initClasificacionSlider() {
     const sliderContainer = document.getElementById('slider-clasificacion');
@@ -521,13 +536,6 @@ function initCronicasTouch() {
             this.classList.add('touch-active');
         });
     });
-    
-    // Cerrar al tocar fuera
-    document.addEventListener('touchstart', function(e) {
-        if (!e.target.closest('.cronica-card')) {
-            cronicaCards.forEach(c => c.classList.remove('touch-active'));
-        }
-    });
 }
 
 function initJugadoresTouch() {
@@ -546,11 +554,22 @@ function initJugadoresTouch() {
             }
         });
     });
-    
-    // Cerrar al tocar fuera
+}
+
+function initTouchOverlayClose() {
+    if (!('ontouchstart' in window)) return;
+
     document.addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.cronica-card')) {
+            document.querySelectorAll('.cronica-card.touch-active').forEach(card => {
+                card.classList.remove('touch-active');
+            });
+        }
+
         if (!e.target.closest('.jugador-card')) {
-            jugadorCards.forEach(c => c.classList.remove('touch-active'));
+            document.querySelectorAll('.jugador-card.touch-active').forEach(card => {
+                card.classList.remove('touch-active');
+            });
         }
     });
 }

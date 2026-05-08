@@ -10,17 +10,21 @@ html {
     background-color: #f2e8cf;
 }
 
+:root {
+    --navbar-height: 80px;
+}
+
 body {
-    font-family: 'Arial Black', 'Arial', sans-serif;
+    font-family: 'Source Serif 4', Georgia, serif;
     overflow-x: hidden;
     width: 100%;
-    padding-top: 80px;
+    padding-top: var(--navbar-height);
 }
 
 /* --- 2. NAVBAR -- */
 .barra-navegacion {
     background-color: #1e73be; 
-    height: 80px;
+    height: var(--navbar-height);
     width: 100%;
     position: fixed;
     top: 0;
@@ -37,6 +41,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.lema-navbar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -46%);
+    font-family: 'Birthstone', cursive;
+    font-size: clamp(1.5rem, 3.1vw, 2.25rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.82);
+    text-shadow: 0 1px 6px rgba(7, 58, 103, 0.22);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width: 999px) {
+    .lema-navbar {
+        display: none;
+    }
 }
 
 .contenedor-logo {
@@ -95,11 +122,11 @@ body {
 /* --- 3. MENÚ LATERAL --- */
 .menu-lateral {
     position: fixed;
-    top: 80px;
+    top: var(--navbar-height);
     right: -100%; 
     width: 100%;
     max-width: 400px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - var(--navbar-height));
     background-color: #073a67;
     z-index: 90;
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -123,7 +150,9 @@ body {
     color: white;
     text-decoration: none;
     font-size: clamp(1.2rem, 5vw, 1.8rem);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color 0.3s;
 }
@@ -149,8 +178,8 @@ body {
     background-image: url('img/banderametalica1.PNG');
     background-size: cover;
     background-position: center;
-    margin-top: -80px;
-    padding-top: 80px;
+    margin-top: calc(-1 * var(--navbar-height));
+    padding-top: var(--navbar-height);
 }
 
 .hero::after {
@@ -310,6 +339,7 @@ body {
 
 /* Carta individual */
 .cronica-card {
+    --cronica-info-height: 0px;
     width: 100%;
     max-width: 420px;
     height: 250px;
@@ -318,13 +348,16 @@ body {
     position: relative;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #1e73be;
 }
 
 /* Contenedor de la imagen */
 .cronica-imagen-wrapper {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: transform 0.4s ease;
 }
 
@@ -364,7 +397,7 @@ body {
 /* Efecto hover: imagen sube, barra aparece desde abajo (solo desktop) */
 @media (hover: hover) and (pointer: fine) {
     .cronica-card:hover .cronica-imagen-wrapper {
-        transform: translateY(-80px);
+        transform: translateY(calc(-1 * var(--cronica-info-height)));
     }
 
     .cronica-card:hover .cronica-info {
@@ -1186,13 +1219,10 @@ body {
 }
 
 /* --- OSWALD EN TÍTULOS --- */
-.nombre-club,
-.historia-titulo,
-.historia-card-titulo,
-.cronicas-titulo,
-.clasificacion-titulo,
+h1,
+h2,
+h3,
 .clasificacion-subtitulo,
-.jornadas-titulo,
 .jornadas-subtitulo {
     font-family: 'Oswald', sans-serif;
 }
@@ -1219,18 +1249,12 @@ body {
 }
 
 /* --- TABLETS (max-width: 768px) --- */
-@media (max-width: 768px) {
-    body {
-        padding-top: 70px;
-    }
-    
-    .barra-navegacion {
-        height: 70px;
+@media (max-width: 780px) {
+    :root {
+        --navbar-height: 70px;
     }
     
     .menu-lateral {
-        top: 70px;
-        height: calc(100vh - 70px);
         width: 100%;
         max-width: 100%;
         right: -100%;
@@ -1245,11 +1269,13 @@ body {
     .enlaces-menu li a {
         font-size: 1.5rem;
     }
+
+    .lema-navbar {
+        font-size: 1.65rem;
+    }
     
     /* Hero */
     .hero {
-        margin-top: -70px;
-        padding-top: 70px;
         min-height: 400px;
     }
     
@@ -1316,30 +1342,12 @@ body {
     
     /* Crónicas: info oculta por defecto, se muestra con tap */
     .cronica-info {
-        transform: translateY(100%);
         padding: 12px 15px;
-        transition: transform 0.4s ease;
     }
-    
-    .cronica-imagen-wrapper {
-    transform: translateY(0);
-    transition: transform 0.4s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.cronica-card .cronica-imagen {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
     
     /* Cuando se toca la tarjeta de crónica */
     .cronica-card.touch-active .cronica-imagen-wrapper {
-        transform: translateY(-60px);
+        transform: translateY(calc(-1 * var(--cronica-info-height)));
     }
     
     .cronica-card.touch-active .cronica-info {
@@ -1474,14 +1482,10 @@ body {
 
 /* --- MÓVILES (max-width: 480px) --- */
 @media (max-width: 480px) {
-    body {
-        padding-top: 60px;
+    :root {
+        --navbar-height: 60px;
     }
-    
-    .barra-navegacion {
-        height: 60px;
-    }
-    
+
     .contenedor-navbar {
         padding: 0 15px;
     }
@@ -1495,11 +1499,6 @@ body {
         width: 35px;
     }
     
-    .menu-lateral {
-        top: 60px;
-        height: calc(100vh - 60px);
-    }
-    
     .enlaces-menu {
         padding: 30px 20px;
         gap: 18px;
@@ -1508,11 +1507,13 @@ body {
     .enlaces-menu li a {
         font-size: 1.3rem;
     }
+
+    .lema-navbar {
+        font-size: 1.35rem;
+    }
     
     /* Hero */
     .hero {
-        margin-top: -60px;
-        padding-top: 60px;
         min-height: 350px;
     }
     
@@ -1554,13 +1555,6 @@ body {
         aspect-ratio: 4/3;
     }
     
-    .cronica-card .cronica-imagen-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
     
     .cronica-info {
         padding: 10px 12px;
